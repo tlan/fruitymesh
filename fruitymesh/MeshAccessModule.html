@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MeshAccessModule (moduleId 10) :: Fruitymesh</title>
   <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/MeshAccessModule.html">
-  <meta name="generator" content="Antora 2.0.0">
+  <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
   <link rel="stylesheet" href="../_/css/footer.css">
 </head>
@@ -186,7 +186,7 @@
 <p>The <em>MeshAccessModule</em> works in conjunction with the <em>MeshAccessConnection</em>. The module provides the necessary services while the connection handles an individual connection after it was set up.</p>
 </div>
 <div class="paragraph">
-<p>The <em>MeshAccessConnection</em> is able to handle standard mesh packets - including packet splitting - and will relay these packets to receivers in the mesh if security permits it (if the partner authenticated itself with the correct key during the initial encryption procedure). A <em>MeshAccessConnection</em> performs first a security handshake before data can be transmitted. After the handshake passes, a node may transmit information about its cluster and update this information once the cluster changes. Cf. <a href="Node.html#_ClusterInfoUpdate" class="page">ClusterInfoUpdate</a> packet for more information.</p>
+<p>The <em>MeshAccessConnection</em> is able to handle standard mesh packets - including <a href="Connections.html#<em>packet_splitting" class="page">packet splitting</a> - and will relay these packets to receivers in the mesh if security permits it (if the partner authenticated itself with the correct key during the initial encryption procedure). A _MeshAccessConnection</em> performs first a security handshake before data can be transmitted. After the handshake passes, a node may transmit information about its cluster and update this information once the cluster changes. Cf. <a href="Node.html#_clusterinfoupdate" class="page">ClusterInfoUpdate</a> packet for more information.</p>
 </div>
 <div class="paragraph">
 <p>There are different types of connection keys used to authenticate when connecting with a node. The <em>keyId</em> is then sent through the mesh depending on the packet type to authenticate the user over the mesh.</p>
@@ -254,10 +254,18 @@ remote mesh.</p>
 <p>Depending on the key type, certain messages are not
 allowed to be sent through a MeshAccessConnection. The key type can be
 any of the <a href="Specification.html#EncryptionKeys" class="page">EncryptionKeys</a>.
+To find out which key provides which level of access check <em>CheckmeshAccessPacketAuthorization</em> function. It return access level base on key type. Assuming the key is correct set of access right will be granted for the request with that key.
 The MeshAccessConnection passes on an incoming message to all modules. The modules can then decide if they want to whitelist or blacklist a
 message. It is also possible to restrict the message to be sent to the local node only. Blacklisting always has preference over whitelisting. If a
 message got blacklisted by a module, it cannot get whitelisted by
-another module.</p>
+another module.
+The reason behind is that someone who knows e.g. <em>NodeKey</em> should be able to communicate with given node but not with other nodes from that network. For that use case <em>NetworkKey</em> also exists that allows to communicate with whole network. But this access can be limited and granted to e.g. only 1 person.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_endianess"><a class="anchor" href="#_endianess"></a>Endianess</h3>
+<div class="paragraph">
+<p>All of the MeshAccess data is encoded in little endian.</p>
 </div>
 </div>
 <div class="sect2">

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Connections :: Fruitymesh</title>
   <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/Connections.html">
-  <meta name="generator" content="Antora 2.0.0">
+  <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
   <link rel="stylesheet" href="../_/css/footer.css">
 </head>
@@ -203,7 +203,7 @@
 <div class="sect2">
 <h3 id="_packet_splitting"><a class="anchor" href="#_packet_splitting"></a>Packet Splitting</h3>
 <div class="paragraph">
-<p>For connections that use the basic packet format with the <em>connPacketHeader</em> (cf. <a href="Specification.html" class="page">Specification</a>), packet splitting can be used. The <em>MeshConnection</em> and <em>MeshAccessConnection</em> use this.</p>
+<p>Whenever data that is requested to be send is bigger than payload size of 1 packet then that data is splitted into few messages. The header of split message has additional information about index of split message so that full data can be easily and realiably reconstructed. For connections that use the basic packet format with the <em>connPacketHeader</em> (cf. <a href="Specification.html" class="page">Specification</a>), packet splitting can be used. The <em>MeshConnection</em> and <em>MeshAccessConnection</em> use this.</p>
 </div>
 <div class="sect3">
 <h4 id="_connpacketsplitheader"><a class="anchor" href="#_connpacketsplitheader"></a>connPacketSplitHeader</h4>
@@ -266,7 +266,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>MeshConnections are initiated by the node and are used to connect between two mesh nodes. They store important information for clustering such as the <em>clusterId</em> and <em>clusterSize</em> of their partner.
-It also implements the handshake for two partners to be connected to the same cluster. It works closely together with the <a href="Node.html" class="page">Node</a>.</p>
+It also implements the handshake for two partners to be connected to the same cluster. It works closely together with the <a href="Node.html" class="page">Node</a>. They can transfer message of any size as they use <a href="#_packet_splitting">packet splitting</a>.</p>
 </div>
 </div>
 </div>
