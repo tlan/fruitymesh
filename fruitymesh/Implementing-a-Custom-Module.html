@@ -171,7 +171,7 @@
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
 <div class="sect1">
-<h2 id="_implementing_a_custom_module"><a class="anchor" href="#_implementing_a_custom_module"></a>Implementing A Custom Module</h2>
+<h2 id="_implementing_a_custom_module"><a class="anchor" href="#_implementing_a_custom_module"></a>Implementing a Custom Module</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This tutorial guides you through the process of creating a new
@@ -208,8 +208,8 @@ configuration is loaded.</p>
 tasks.</p>
 </li>
 <li>
-<p><strong>BleEventHandler</strong>: Routes all Bluetooth Low Energy events to the
-module.</p>
+<p><strong>BleHandlers</strong>: Several handlers that are called when low level ble events
+occur.</p>
 </li>
 <li>
 <p><strong>MeshMessageReceivedEventHandler</strong>: Delivers data that has been sent
@@ -230,35 +230,41 @@ can ping another node over the network and parse the response.</p>
 <div class="sect3">
 <h4 id="_step_1"><a class="anchor" href="#_step_1"></a>Step 1</h4>
 <div class="paragraph">
-<p>First, clone the <code>TemplateModule.cpp</code> file from the <code>src/examples</code>
-folder into <code>src/modules/PingModule.cpp</code>, afterwards, do the same with
-<code>TemplateModule.h</code> but put it in the <code>inc/</code> folder. You need to
-refactor the Method names and some other variables. Use the search
-function and look for the string "template" anywhere in these two
-files and rename them accordingly.</p>
+<p>First, clone the <code>TemplateModule.cpp</code> and <code>TemplateModule.h</code> file from
+the <code>src/examples</code> directory into <code>src/modules/PingModule.cpp</code> and
+<code>src/modules/PingModule.h</code>. You need to refactor the method names and
+some other variables. Use the search function and look for the string
+"template" anywhere in these two files and rename them accordingly.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_step_2"><a class="anchor" href="#_step_2"></a>Step 2</h4>
 <div class="paragraph">
-<p>Activate your module by instantiating it in the constructor of
-<code>src/FruityMesh.cpp</code> where all the other modules are instantiated.
+<p>Activate your module by instantiating it in the featureset
+<code>config/featuresets/github.cpp</code> where all the other modules are instantiated.
 You might need to increase the MAX_MODULE_COUNT in <code>config/Config.h</code>.
-Your PingModule Constructor needs a moduleID for instantiation. All
-module IDs are specified in Config.h (enum moduleID) as well. You
-should add a new enum entry under the section "Custom modules", e.g.
-<code>PING_MODULE_ID=200</code>.</p>
+Your PingModule Constructor needs a ModuleId for instantiation. All
+Module IDs are specified in types.h (enum ModuleId) as well. An
+enum entry is already reserved under the section "Other Modules", see
+<code>PING_MODULE=201</code>. If you would like to create another module you&#8217;d have
+to add the ModuleId to this enum.</p>
 </div>
 <div class="paragraph">
-<p>The initialization may look like this:</p>
+<p>The initialization inside the featureset may look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">activeModules[15] = new PingModule();</code></pre>
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">size += GS-&gt;InitializeModule&lt;PingModule&gt;(createModule);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You should also include the new <code>&lt;PingModule.h&gt;</code>.</p>
+<p>, just like the other modules in that file. Note that you have to add
+the return value of <code>InitializeModule</code> to the size of all modules and
+pass it the boolean <code>createModule</code> so that the firmware is able to
+determine how much memory must be allocated for all the modules.</p>
+</div>
+<div class="paragraph">
+<p>You should also include the new <code>"PingModule.h"</code>.</p>
 </div>
 <div class="paragraph">
 <p>Once the module&#8217;s .cpp file is in the modules folder, it will automatically be included in the compilation.</p>
@@ -293,7 +299,7 @@ of the function:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">if(TERMARGS(0, "pingmod")){
     //Get the id of the target node
-    nodeID targetNodeId = atoi(commandArgs[0]);
+    NodeId targetNodeId = atoi(commandArgs[0]);
     logt("PINGMOD", "Trying to ping node %u", targetNodeId);
 
     //TODO: Send ping packet to that node
@@ -348,7 +354,7 @@ other node. The previously written code now looks like this:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">if(TERMARGS(0, "pingmod")){
     //Get the id of the target node
-    nodeID targetNodeId = atoi(commandArgs[0]);
+    NodeId targetNodeId = atoi(commandArgs[0]);
     logt("PINGMOD", "Trying to ping node %u", targetNodeId);
 
     //Some data
@@ -357,7 +363,7 @@ other node. The previously written code now looks like this:</p>
 
     //Send ping packet to that node
     SendModuleActionMessage(
-            MESSAGE_TYPE_MODULE_TRIGGER_ACTION,
+            MessageType::MODULE_TRIGGER_ACTION,
             targetNodeId,
             PingModuleTriggerActionMessages::TRIGGER_PING,
             0,
@@ -376,7 +382,7 @@ data is not necessary for a ping and is only added for illustration
 purposes. The message is sent as a ModuleMessage with the moduleId
 automatically added by the <code>SendModuleActionMessage</code> method. The
 actionType is TRIGGER_PING. The message type
-<code>MESSAGE_TYPE_MODULE_TRIGGER_ACTION</code> is used for sending messages that
+<code>MessageType::MODULE_TRIGGER_ACTION</code> is used for sending messages that
 await a response.</p>
 </div>
 <div class="paragraph">
@@ -402,7 +408,7 @@ It looks like this:</p>
     Module::MeshMessageReceivedHandler(connection, sendData, packetHeader);
 
     //Filter trigger_action messages
-    if(packetHeader-&gt;messageType == MESSAGE_TYPE_MODULE_TRIGGER_ACTION){
+    if(packetHeader-&gt;messageType == MessageType::MODULE_TRIGGER_ACTION){
         connPacketModule* packet = (connPacketModule*)packetHeader;
 
         //Check if our module is meant and we should trigger an action
@@ -475,7 +481,7 @@ action responses:</p>
     Module::MeshMessageReceivedHandler(connection, sendData, packetHeader);
 
     //Filter trigger_action messages
-    if(packetHeader-&gt;messageType == MESSAGE_TYPE_MODULE_TRIGGER_ACTION){
+    if(packetHeader-&gt;messageType == MessageType::MODULE_TRIGGER_ACTION){
         connPacketModule* packet = (connPacketModule*)packetHeader;
 
         //Check if our module is meant and we should trigger an action
@@ -492,7 +498,7 @@ action responses:</p>
 
                 //Send ping packet to that node
                 SendModuleActionMessage(
-                        MESSAGE_TYPE_MODULE_ACTION_RESPONSE,
+                        MessageType::MODULE_ACTION_RESPONSE,
                         packetHeader-&gt;sender,
                         PingModuleActionResponseMessages::PING_RESPONSE,
                         0,
@@ -505,7 +511,7 @@ action responses:</p>
     }
 
     //Parse Module action_response messages
-    if(packetHeader-&gt;messageType == MESSAGE_TYPE_MODULE_ACTION_RESPONSE){
+    if(packetHeader-&gt;messageType == MessageType::MODULE_ACTION_RESPONSE){
 
         connPacketModule* packet = (connPacketModule*)packetHeader;
 
