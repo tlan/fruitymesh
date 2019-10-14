@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enrollment Module (moduleId 5) :: Fruitymesh</title>
+  <title>Enrollment Module (ID 5) :: Fruitymesh</title>
   <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/EnrollmentModule.html">
   <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
@@ -170,12 +170,12 @@
 </div>
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
-<h1>Enrollment Module (moduleId 5)</h1>
+<h1>Enrollment Module (ID 5)</h1>
 <div class="sect1">
 <h2 id="_purpose"><a class="anchor" href="#_purpose"></a>Purpose</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>New nodes are normally flashed without a <code>networkId</code> assigned (set to 0). This means they will not connect to a mesh as long as they are not enrolled. The term enrolled is used in synonym with provisioned or commisioned.</p>
+<p>The <em>EnrollmentModule</em> has <em>ModuleId</em> 5. New nodes are normally flashed without a <code>networkId</code> assigned (set to 0). This means they will not connect to a mesh as long as they are not enrolled. The term enrolled is used in synonym with provisioned or commisioned.</p>
 </div>
 <div class="paragraph">
 <p>In order to assign a node to a mesh, the user has to give a <code>networkId</code>, the <code>networkKey</code> and a unique <code>nodeId</code> for this mesh. This can be done by a MeshGateway or a dedicated enrollment app. The enrollment packet should be sent to the broadcast address 0 and must contain to serial number of the node to be enrolled.</p>
@@ -553,7 +553,7 @@ enum EnrollmentModuleActionResponseMessages{
 </div>
 </article>
 <aside class="article-aside hidden" role="navigation">
-  <h3 class="toc-title">Enrollment Module (moduleId 5)</h3>
+  <h3 class="toc-title">Enrollment Module (ID 5)</h3>
   <div id="article-toc"></div>
 </aside>
   </main>
