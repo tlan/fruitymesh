@@ -219,6 +219,12 @@ Such nodes should never be used in an environment where unauthorized people have
 </div>
 </div>
 <div class="sect2">
+<h3 id="_preferred_network_enrollment"><a class="anchor" href="#_preferred_network_enrollment"></a>Preferred Network Enrollment</h3>
+<div class="paragraph">
+<p>Preferred network enrollment is used for assets because we would like to set their network id in order for assets to send their measurement to nodes in a particular network. In case of preferred network enrollment, the asset won&#8217;t restart. In PreferredNetwork only networkId and nodekey is given.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_different_enrollment_scenarios"><a class="anchor" href="#_different_enrollment_scenarios"></a>Different Enrollment Scenarios</h3>
 <div class="sect3">
 <h4 id="_unenrolled_node"><a class="anchor" href="#_unenrolled_node"></a>Unenrolled Node</h4>
@@ -282,6 +288,21 @@ action [nodeId] enroll remove [serialNumber] {requestHandle}
 
 //E.g. removing the enrollment of the node with serial number BCBCF
 action 0 enroll remove BCBCF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_preferred_network"><a class="anchor" href="#_preferred_network"></a>Preferred Network</h3>
+<div class="paragraph">
+<p>Preferred network will set only the networkid of a node and wont cause a restart after network is set.It can only set the network of an asset.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">//Set a preferred network
+action [nodeId] enroll set_preferred_network [serialNumber] [newNetworkId] [nodeKey] {timeOutSec} {requestHandler}
+
+//E.g. set preferred network of the node with serial number BBBBN
+action 0 enroll set_preferred_network BBBBN 12 0B:00:00:00:0B:00:00:00:0B:00:00:00:0B:00:00:00</code></pre>
 </div>
 </div>
 </div>
