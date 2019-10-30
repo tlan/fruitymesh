@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CherrySim :: Fruitymesh</title>
-  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/CherrySim.html">
+  <title>Throughput :: Fruitymesh</title>
+  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/Throughput.html">
   <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
   <link rel="stylesheet" href="../_/css/footer.css">
@@ -117,7 +117,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Battery-Consumption.html">Battery Consumption</a>
       </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="Throughput.html">Throughput</a>
       </li>
   <li class="nav-item" data-depth="2">
@@ -173,66 +173,56 @@
 </div>
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
-<h1>CherrySim</h1>
-<div id="preamble">
+<h1>Throughput</h1>
+<div class="sect1">
+<h2 id="_throughput_optimization"><a class="anchor" href="#_throughput_optimization"></a>Throughput Optimization</h2>
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>CherrySim is not yet open source. It is being worked on, stay tuned for updates.</p>
-</div>
-</blockquote>
+<p>Many tests were done with the nRF SoftDevice S132 v5.1.0. The decision was to change the default connectionInterval to 7.5 ms, the eventLength to 7.5 ms, turn event length extension on and change the scan interval to 75 ms and the scan window to 7.5 ms. An advertiser was active with a 100 ms advertising interval. This resulted in the best throughput and distribution of traffic over all connections.</p>
 </div>
 <div class="paragraph">
-<p>CherrySim is the new simulator that is based on our FruityMesh code. It is written entirely in C and C++. You will notice a few <code>#ifdef</code> statements in the FruityMesh codebase that perform a check whether the simulator is enabled.</p>
+<p>Setting the event length to the same value as the connection interval will result in all central connections overlapping each other. Peripheral connections will by design always overlap 2 connection events most of the time. This will result in a round robin scheduling of the connections so that each connection will approximately receive the same amount of time. If there are less connections, they have a higher bandwidth. This is ideal as it will allow the highest throughput for all scenarios as it is not easily possible to modify the connection parameters after a connection was made. We do however not know how many connections we will need to establish beforehand.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/cherrysim.png" alt="cherrysim"></span></p>
+<p>Updating the PHY to 2Mbit did result in serious problems with these settings as connections  would randomly drop during the upgrade and the performance would decrease, rather than increase. As the link budget also decreases with the 2Mbit PHY, it was decided to stick with the 1Mbit PHY as there was not much performance to gain by upgrading with different settings.</p>
+</div>
+<div class="paragraph">
+<p>The scan interval and window were increased so that the scan does rarely interrupt the connections, while still being able to pick up a high number of advertisements during its increased and uninterrupted scan window.</p>
+</div>
+<div class="paragraph">
+<p>Using packet splitting will result in significant throughput reduction and an increased latency as packets need to be reassembled on each node. Using a higher MTU has to be implemented to reduce the performance hit by packet splitting. Increasing the MTU will not affect the throughput of packets with a size of 20 byte.</p>
+</div>
+<div class="sect2">
+<h3 id="_measurement_results"><a class="anchor" href="#_measurement_results"></a>Measurement Results</h3>
+<div class="paragraph">
+<p>Measurements were done with an active scanner at 75 ms scan interval and 7.5 ms scan window. The advertiser was also active with a 100 ms interval. Disabling advertising and scanning, for example after the mesh was sucessfully set up, will increase the connection throughput.</p>
+</div>
+<div class="paragraph">
+<p>Devices were placed close to each other for this test, so they had a good link budget. Increasing the distance of devices to each other until they reach the stable connection threshold RSSI of around -85 will result in a slightly decreased throughput by around 10 to 20%. If devices are forced to communicate to each other with a link budget worse than -85, the throughput will decrease a lot. This is however prevented in the mesh implementation. Having a lot of other devices transmitting on the BLE advertising and connection channels could also affect the mesh performance in different ways that are hard to measure or predict.</p>
+</div>
+<div class="paragraph">
+<p>With <strong>3 connections as a central and one connection as a peripheral</strong> (all devices close to each other), it was possible to achieve an average throughput of about 1000 packets (each 20 byte) per 10 seconds on each connection. The lowest measured throughput of one connection was around 850 packets per 10 seconds. This is an average throughput of around <strong>2 kbyte/s per connection</strong> or around <strong>8 kbyte/s in total</strong>.</p>
+</div>
+<div class="paragraph">
+<p>With less central connections, the throughput will increase. For example, having <strong>one peripheral and one central connection</strong> resulted in a throughput of around 2000 packets per 10 seconds. This is around <strong>4 kbyte/s per connection</strong> and again around <strong>8 kbyte/s in total</strong>.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_functionality_features"><a class="anchor" href="#_functionality_features"></a>Functionality &amp; Features</h2>
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The new simulator abstracts the SoftDevice and creates a communication layer between the nodes. It simulates all nodes in a short period of time and can even visualize the mesh.</p>
+<p>The throughput of FruityMesh is around <strong>20 times higher</strong> than other solutions that rely on a flooding mesh. FruityMesh has a measured throughput of around 8 kbyte/s. The theoretical throughput of flooding mesh implementations is usually stated as 3.5 kbit/s, which means around 0.4 kbyte/s. Also, FruityMesh uses all 37 connection channels of BLE while most flooding mesh implementations only use one channel and cannot use more than 3. This does further reduce the throughput of these implementations in real world use-cases.</p>
 </div>
 <div class="paragraph">
-<p>It supports terminal input and output for all nodes, pipe communication for exchanging data efficiently with other applications, pseudo-randomness to deterministically debug a problem, battery usage estimation, Google test integration, random configurations or user defined positions, etc.</p>
-</div>
-<div class="paragraph">
-<p>Use cases for the simulator are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Unit and system testing</p>
-</li>
-<li>
-<p>Estimate battery usage</p>
-</li>
-<li>
-<p>Implement new features</p>
-</li>
-<li>
-<p>Evaluate and improve mesh behavior</p>
-</li>
-<li>
-<p>Debug implementation problems</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_instances"><a class="anchor" href="#_instances"></a>Instances</h3>
-<div class="paragraph">
-<p>CherrySim works with only one instance and is able to simulate many instances of FruityMesh. Hence FruityMesh must be written in a way that the code itself has no state variables. No global or functional static variables are allowed. Every variable that needs to be saved from function call to another needs to be a part of class since CherrySim creates instances of classes for every node.</p>
-</div>
+<p>Also, there is more room for improvement: Increasing the MTU will increase the throughput drastically if messages are grouped together or if bigger messages are sent through the mesh.</p>
 </div>
 </div>
 </div>
 </article>
 <aside class="article-aside hidden" role="navigation">
-  <h3 class="toc-title">CherrySim</h3>
+  <h3 class="toc-title">Throughput</h3>
   <div id="article-toc"></div>
 </aside>
   </main>
@@ -244,7 +234,7 @@
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '..'
-  window.antora.pagePath = '/fruitymesh/CherrySim.html'
+  window.antora.pagePath = '/fruitymesh/Throughput.html'
 </script>
 <script src="../_/js/site.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js"></script>

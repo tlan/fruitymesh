@@ -118,6 +118,9 @@
     <a class="nav-link" href="Battery-Consumption.html">Battery Consumption</a>
       </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Throughput.html">Throughput</a>
+      </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="RecordStorage.html">Record Storage</a>
       </li>
 </ul>
@@ -280,10 +283,10 @@ lping [count] [mode = r / u]</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre>//Activates a flooding mode to generate packets
-action [nodeID] debug flood [destinationNodeId] [mode] [packetsPer100Sec]
+action [nodeID] debug flood [destinationNodeId] [mode] [packetsPer10Sec] {timeoutSec = 10}
 
 //Tell node 1 to flood node 2 with 1 packet each second
-action 1 debug flood 2 2 100
+action 1 debug flood 2 2 10
 
 //Instruct node 2 to count packets from node 1
 action 2 debug flood 1 3 0</pre>
