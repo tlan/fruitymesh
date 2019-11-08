@@ -813,6 +813,55 @@ packet is encrypted before transmission.</p>
 </tbody>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_dead_data"><a class="anchor" href="#_dead_data"></a>Dead Data</h3>
+<div class="paragraph">
+<p>If a connection receives undecryptable data it informs the connection partner by sending this unencrypted message and resets the handshake. After this happens, the connection does not process any data other than a new handshake. To send more data, the handshake has to be completed successfully.
+This is done in case the Nounces run out of sync between the connection partners. This can happen if the stack, e.g. of a mobile device silently drops packets and does not inform the application.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">messageType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MessageType::DEAD_DATA (0x3D)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">senderId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sender ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">receiverId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Receiver ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8[8]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">magic number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0xDE:AD:DA:DA:00:FF:77:33</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </article>
