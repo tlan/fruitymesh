@@ -302,7 +302,7 @@ of the function:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">if(TERMARGS(0, "pingmod")){
     //Get the id of the target node
-    NodeId targetNodeId = atoi(commandArgs[0]);
+    NodeId targetNodeId = Utility::StringToU16(commandArgs[0]);
     logt("PINGMOD", "Trying to ping node %u", targetNodeId);
 
     //TODO: Send ping packet to that node
@@ -313,8 +313,7 @@ of the function:</p>
 </div>
 <div class="paragraph">
 <p>The command name and command arguments should be in lowercase letters to
-be consistent with other commands. You must include <code>&lt;stdlib.h&gt;</code> for
-the atoi method to work.</p>
+be consistent with other commands.</p>
 </div>
 <div class="paragraph">
 <p>Next, flash it to your device again and watch if it reacts on your
@@ -357,7 +356,7 @@ other node. The previously written code now looks like this:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">if(TERMARGS(0, "pingmod")){
     //Get the id of the target node
-    NodeId targetNodeId = atoi(commandArgs[0]);
+    NodeId targetNodeId = Utility::StringToU16(commandArgs[0]);
     logt("PINGMOD", "Trying to ping node %u", targetNodeId);
 
     //Some data
