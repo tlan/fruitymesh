@@ -311,6 +311,21 @@ action 1 debug counter 0 0 0</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_reading_the_memory_of_a_node"><a class="anchor" href="#_reading_the_memory_of_a_node"></a>Reading the Memory of a Node</h3>
+<div class="paragraph">
+<p>It is possible to read any part of memory of a node that is available over the mesh network. It goes without saying, that this command is very powerful and a big security issue. It is therefore not (and must not be) included in release builds. The length is limited to 32 bytes and multiple reads should be done if more memory is to be requested. By defining ACTIVATE_UNSECURE_MEMORY_READBACK, it can be activated in any featureset for testing, e.g. by sending a modified version of the same firmware as an update.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">//Query any node to return its memory at a given address
+action [nodeID] debug readmem [address] [length]
+
+//Read the first 10 bytes of memory starting at flash address 0x00000000
+action 1 debug readmem 0 10</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
