@@ -348,6 +348,18 @@ Do not choose a newer version, as this might fail to compile.
 <div class="paragraph">
 <p>to flash the firmware on a device.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The safest and most straight forward setup for flashing is to only have a single board connected to the computer while flashing.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_using_eclipse_for_development"><a class="anchor" href="#_using_eclipse_for_development"></a>Using Eclipse For Development</h4>
@@ -377,10 +389,13 @@ Do not choose a newer version, as this might fail to compile.
 <h3 id="_open_serial_terminal_connect"><a class="anchor" href="#_open_serial_terminal_connect"></a>Open Serial Terminal &amp; Connect</h3>
 <div class="paragraph">
 <p>(On Windows,
-<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">Putty</a> is the best tool. The screen utility can be used on macOS or Linux.) You have to connect to UART using the following settings:</p>
+<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> is the best tool. The screen utility can be used on macOS or Linux.) You have to connect to UART using the following settings:</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><strong>Serial line to connect to:</strong> COMX (see blow)</p>
+</li>
 <li>
 <p><strong>Connection Type:</strong> Serial</p>
 </li>
@@ -409,6 +424,18 @@ Do not choose a newer version, as this might fail to compile.
 </td>
 <td class="content">
 OSX users: To find out which serial port to open, you can list all devices under <code>/dev/cu.</code> and pick the one that says usbmodem.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+On Windows you can find the correct COM port to connect to by opening the device manager and then under (COM &amp; LPT) you should see a JLink entry with the COM number at the end (e.g. COM3). All the serial settings can be found in PuTTY under Connection/Serial.
 </td>
 </tr>
 </table>
@@ -471,7 +498,7 @@ switch their led to white (all LEDs on). After you enter <strong>action 0 io led
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Two nodes will only connect to each other once they have been enrolled in the same network. The Github configuration will automatically have all nodes enrolled in the same network after flashing. If you do not want this, take a look at the <a href="Specification.html#_UICR" class="page">UICR configuration</a>.
+Two nodes will only connect to each other once they have been enrolled in the same network. The Github configuration will automatically have all nodes enrolled in the same network after flashing. If you do not want this, take a look at the <a href="Specification.html#UICR" class="page">UICR configuration</a>.
 </td>
 </tr>
 </table>
