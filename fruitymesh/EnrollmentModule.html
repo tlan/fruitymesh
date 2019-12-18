@@ -309,6 +309,38 @@ action 0 enroll set_network 12</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_requesting_specific_proposals"><a class="anchor" href="#_requesting_specific_proposals"></a>Requesting specific proposals</h3>
+<div class="paragraph">
+<p>In some situations (e.g. when the nodes are placed in a line) it can be helpful to specifically query which node sees which serial numbers before sending the enrollment. Therefore, it is possible to send the request_proposals message with several serialNumbers that are then temporarily stored on the target node. The target node will respond with a proposal message as soon as it receives a broadcast message of one of the nodes to be enrolled.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">//Query which node sees which serial numbers
+action [nodeId] enroll request_proposals [up to 11 serial numbers]
+
+//E.g. ask all connected nodes which of them sees any of the given serial numbers
+action 0 enroll request_proposals BBBBD BBBBF BBBBG BBBBH BBBBJ BBBBK BBBBL BBBBM BBBBN BBBBP BBBBQ
+//E.g. only ask for three serial numbers
+action 0 enroll request_proposals BBZ3F ZZZZZ ZFGBB</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The nodes then scan for one minute if they see any of the specified serial numbers. Upon arrival, the message is answered with the following JSON (1 JSON per serial number):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>{
+	//NodeID 1 was able to scan serialNumber BBBBG
+	"nodeId":1,
+	"type":"request_proposals_response",
+	"serialNumber":BBBBG,
+	"module":5,
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -568,6 +600,69 @@ enum EnrollmentModuleActionResponseMessages{
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">result</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See above for possible result codes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requesting_proposals"><a class="anchor" href="#_requesting_proposals"></a>Requesting Proposals</h3>
+<div class="sect3">
+<h4 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h4>
+<div class="paragraph">
+<p>actionType: <code>REQUEST_PROPOSALS (4)</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 - 44</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">serialNumberIndices</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Up to 11 serial indices.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_response_4"><a class="anchor" href="#_response_4"></a>Response</h4>
+<div class="paragraph">
+<p>actionType: <code>REQUEST_PROPOSALS_RESPONSE (4)</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">serialNumberIndex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The serial index that was possible to scan.</p></td>
 </tr>
 </tbody>
 </table>
