@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Logger :: Fruitymesh</title>
-  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/Logger.html">
+  <title>BoardConfig :: Fruitymesh</title>
+  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/BoardConfig.html">
   <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
   <link rel="stylesheet" href="../_/css/footer.css">
@@ -144,7 +144,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="FruityHal.html">FruityHal</a>
       </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Logger.html">Logger</a>
       </li>
   <li class="nav-item" data-depth="2">
@@ -218,73 +218,29 @@
 </div>
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
-<h1>Logger</h1>
+<h1>BoardConfig</h1>
 <div class="sect1">
 <h2 id="_purpose"><a class="anchor" href="#_purpose"></a>Purpose</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The logger is used to output data on the terminal. It allows filtering for log tags to make development easy and also offers some functionality to log error codes into RAM.</p>
+<p>BoardConfigurations provide a way to run the same firmware on multiple boards. This allows you to easily develop a firmware on a development kit, then flash the same firmware on different types of custom hardware PCBs.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_functionality"><a class="anchor" href="#_functionality"></a>Functionality</h2>
+<h2 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>How it works</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The logger can be used for printing log outputs to the terminal using the <code>logt</code> macro. With the <code>logjson</code> macro, it is possible to log a json for machine to machine communication. This logging can be removed from the compiled firmware by undefining the <code>ENABLE_LOGGING</code> macro or the <code>ENABLE_JSON_LOGGING</code> macro. Another function called <code>trace</code> will log a string without adding additional information such as the time or the place where the log statement was used.</p>
+<p>Each <a href="Developers.html#FeatureSets" class="page">Featureset</a> can contain a number of board configurations. So if you develop your custom featureset, you can choose to include all the boards that you want to run this firmware on. The different Board Configurations can be found in the <code>config/boards/</code> folder. Each board has an ID that must be stored in the <a href="Specification.html#UICR" class="page">UICR</a> while flashing the firmware on that board. During boot, FruityMesh will then load the correct board settings that include the pin configuration, clock source and everything else that is board specific. You only have to specify the settings that are necessary for your board as everything else is set to save defaults.</p>
 </div>
 <div class="paragraph">
-<p>The logger also has functionality for logging events to the RAM, e.g. <code>logError</code> or <code>logCustomError</code>. These commands will record the time and the error code into RAM. <code>logCustomCount</code> allows you to increase the value each time the method is called. These error codes can be queried using the <code>get_errors</code> command of the <a href="StatusReporterModule.html" class="page">StatusReporterModule</a>. Once the error codes have been requested, the error log is cleared.</p>
-</div>
-<div class="paragraph">
-<p>The logger and terminal can be used over UART or over Segger RTT. It is also possible to have both log transports enabled at the same time. Use the defines <code>ACTIVATE_UART</code> and <code>ACTIVATE_SEGGER_RTT</code> to enable this functionality in your featureset.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ErrorLog"><a class="anchor" href="#ErrorLog"></a>Error Log</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Because there are errors that only happen during production or in a test mesh that is not easily debuggable, the Logger supports logging errors to RAM. Each node can store a number of errors in RAM. We allow to store a timestamp, an error code and some extra information. This log can be queried every few minutes or hours by anyone attached to the mesh, e.g. a Gateway. The errors have different significance and some information is logged using a counter that always increments. This statistical information can be used to determine the health of a live mesh and to monitor it. Other errors are more severe but happen less often. For these, a seperate entry that includes the timestamp is stored. Storing the errors is necessary as they might be generated while a node is disconnected from the mesh. The error log will be cleared once the errors have been queried. Reboots are also stored in this log. Once a node fails for any reason, it will store that reason in the error log after it has rebootet. Reasons can include watchdog reboots, reboots due to a firmware update, hardfault, etc,&#8230;&#8203;. To log an error in your custom application, use the <code>logError</code> method from the <code>Logger</code> class.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_terminal_commands"><a class="anchor" href="#_terminal_commands"></a>Terminal Commands</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_toggling_log_tags"><a class="anchor" href="#_toggling_log_tags"></a>Toggling Log Tags</h3>
-<div class="paragraph">
-<p>Output of specific logTags can be toggled with the following command. A few log tags such as ERROR or WARNING are always logged to the terminal.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">debug [tagName]
-
-//E.g. toggle logging for the node
-debug node
-
-//E.g. toggle logging for all logs
-debug all</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_viewing_all_active_log_tags"><a class="anchor" href="#_viewing_all_active_log_tags"></a>Viewing All Active Log Tags</h3>
-<div class="paragraph">
-<p>The following command provides a list of all enabled log tags:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">debugtags</code></pre>
-</div>
-</div>
+<p>Make sure to choose your board ids so that they start from 10000 to leave enough space for boardids that we might open source in the future.</p>
 </div>
 </div>
 </div>
 </article>
 <aside class="article-aside hidden" role="navigation">
-  <h3 class="toc-title">Logger</h3>
+  <h3 class="toc-title">BoardConfig</h3>
   <div id="article-toc"></div>
 </aside>
   </main>
@@ -296,7 +252,7 @@ debug all</code></pre>
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '..'
-  window.antora.pagePath = '/fruitymesh/Logger.html'
+  window.antora.pagePath = '/fruitymesh/BoardConfig.html'
 </script>
 <script src="../_/js/site.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js"></script>
