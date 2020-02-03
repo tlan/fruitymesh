@@ -263,15 +263,7 @@
 <div class="sect2">
 <h3 id="_flash_softdevice_application"><a class="anchor" href="#_flash_softdevice_application"></a>Flash SoftDevice &amp; Application</h3>
 <div class="paragraph">
-<p>Plug in your nrf51 or nrf52 development board via USB, then open a command prompt in the FruityMesh folder and type in the following command for flashing the nrf51 version:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>C:/&lt;path_to_nrfjprog&gt;/nrfjprog.exe --chiperase --program binary/fruitymesh_nrf51_s130.hex --reset</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or the following for nrf52:</p>
+<p>Plug in your nrf52 development board via USB, then open a command prompt in the FruityMesh folder and type in the following command for flashing:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -329,6 +321,15 @@ Do not choose a newer version, as this might fail to compile.
 </div>
 </div>
 <div class="sect3">
+<h4 id="_installing_cmake"><a class="anchor" href="#_installing_cmake"></a>Installing CMake</h4>
+<div class="paragraph">
+<p>Download and install the latest Version of CMake:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://cmake.org/download/" class="bare">https://cmake.org/download/</a></p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_tools_installation_windows_only"><a class="anchor" href="#_tools_installation_windows_only"></a>Tools Installation (Windows Only)</h4>
 <div class="paragraph">
 <p>Next, if you are working on windows, you have to download and install some unix utilities, the GNU ARM Eclipse Build Tools. This includes <em>make</em>, <em>sh</em>, <em>rm</em> and some others. Version 2.4 has been tested successfully and the executable installer can be downloaded from here:</p>
@@ -358,40 +359,45 @@ Do not choose a newer version, as this might fail to compile.
 <div class="sect3">
 <h4 id="_project_configuration"><a class="anchor" href="#_project_configuration"></a>Project Configuration</h4>
 <div class="paragraph">
-<p>The last step, before you can build the project is to duplicate <code>Makefile.local.template</code> and name it <code>Makefile.local</code>.</p>
+<p>Create a new sibling directory next to FruityMesh and navigate your Command Line in this newly created directory. Execute the following command within that directory:</p>
 </div>
 <div class="paragraph">
-<p>Open Makefile.local and give the correct path to your <em>gcc</em> installation:</p>
+<p><code>cmake ../fruitymesh -DBUILD_FEATURESETS=ON -DGCC_PATH="C:/path/to/gcc-arm-none-eabi-4_9" -G "Unix Makefiles"</code></p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>FRUITYMESH_GNU_INSTALL_ROOT := C:/&lt;path_to_gcc-arm-embedded-4.9&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can also specify the PLATFORM (NRF51 or NRF52) and give a different <a href="Features.html" class="page">Featureset</a> for the build.</p>
-</div>
-<div class="paragraph">
-<p>Next, open a command prompt in the FruityMesh folder and type:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>make</pre>
-</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The GCC_PATH must be specified using forward slashes ("/"), not backward slashes ("\").
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>If everything was set up correctly and the location of make was correctly entered in the <code>PATH</code> variable of your operating system, everything should build.</p>
+<p>Replace the GCC_PATH according to the location where you installed GCC 4.9. This will generate a Makefile which is possible to be used for building.</p>
+</div>
+<div class="paragraph">
+<p>You could directly interact with the Makefile, but the preferred way is to use CMake for this step as well:</p>
+</div>
+<div class="paragraph">
+<p><code>cmake --build . --target github_nrf52</code></p>
+</div>
+<div class="paragraph">
+<p>For the target, any other <a href="Features.html" class="page">Featureset</a> may be used as well.</p>
 </div>
 <div class="paragraph">
 <p>If you installed the nRF Command Line Tools and properly configured the <code>PATH</code>, you can now type:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>make flash</pre>
+<pre>`cmake --build . --target github_nrf52_flash`</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>to flash the firmware on a device.</p>
+<p>to flash the firmware on a device. This also works with any other <a href="Features.html" class="page">Featureset</a> by appending "_flash" to the name.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -412,10 +418,10 @@ The safest and most straight forward setup for flashing is to only have a single
 <p><span class="image"><img src="_images/eclipsescreen.png" alt="eclipsescreenshot"></span></p>
 </div>
 <div class="paragraph">
-<p>Eclipse is a good development IDE for FruityMesh. The project settings are already included and all you have to do is download GNU MCU Eclipse, which already contains the necessary plugins for Embedded Development from here:</p>
+<p>Eclipse is a good development IDE for FruityMesh. To generate the project settings, execute the following command in a sibling directory:</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/gnu-mcu-eclipse/org.eclipse.epp.packages/releases" class="bare">https://github.com/gnu-mcu-eclipse/org.eclipse.epp.packages/releases</a></p>
+<p><code>cmake ../fruitymesh -DBUILD_FEATURESETS=ON -DGCC_PATH="C:/path/to/gcc-arm-none-eabi-4_9" -G "Eclipse CDT4 - Unix Makefiles"</code></p>
 </div>
 <div class="paragraph">
 <p>After starting Eclipse, all you have to do is to import the FruityMesh project. You can then develop, flash and debug in a comfortable way.</p>
