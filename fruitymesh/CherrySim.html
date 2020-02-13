@@ -219,17 +219,25 @@
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
 <h1>CherrySim</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_general"><a class="anchor" href="#_general"></a>General</h2>
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>CherrySim is not yet open source. It is being worked on, stay tuned for updates.</p>
+<p>CherrySim uses the codebase of FruityMesh and provides a SoftDevice abstraction layer that simulates Bluetooth connections, advertising, flash access and much more. It gives the possibility to debug, develop and simulate multiple FruityMesh nodes on a development PC.</p>
 </div>
-</blockquote>
-</div>
-<div class="paragraph">
-<p>CherrySim is the new simulator that is based on our FruityMesh code. It is written entirely in C and C++. You will notice a few <code>#ifdef</code> statements in the FruityMesh codebase that perform a check whether the simulator is enabled.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Nordic allowed us in their forums to use their headers in our simulator as long as it
+is used to simulate a Nordic Integrated Circuit.
+See: <a href="https://devzone.nordicsemi.com/f/nordic-q-a/57615/legal-issue-using-nordic-sdk-code" class="bare">https://devzone.nordicsemi.com/f/nordic-q-a/57615/legal-issue-using-nordic-sdk-code</a>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/cherrysim.png" alt="cherrysim"></span></p>
@@ -237,41 +245,178 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_functionality_features"><a class="anchor" href="#_functionality_features"></a>Functionality &amp; Features</h2>
+<h2 id="_functionality"><a class="anchor" href="#_functionality"></a>Functionality</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Simulates nodes in a time step based simulation</p>
+</li>
+<li>
+<p>Allows easy debugging of mesh-behaviour</p>
+</li>
+<li>
+<p>Includes CherrySimRunner for manual testing and simulation and CherrySimTester for automatic mesh tests using the google test framework</p>
+</li>
+<li>
+<p>Deterministic meshing using a pseude random number generator</p>
+</li>
+<li>
+<p>Mesh state visualization on <a href="http://localhost:5555/" class="bare">http://localhost:5555/</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_it_works"><a class="anchor" href="#_how_it_works"></a>How It Works</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The new simulator abstracts the SoftDevice and creates a communication layer between the nodes. It simulates all nodes in a short period of time and can even visualize the mesh.</p>
+<p>CherrySim uses a header file <em>SystemTest.h</em> that is force-included before all other header files to be able to abstract the SoftDevice. All SoftDevice calls are implemented in a way to closely mock the funcationality of a real SoftDevice. For everything that uses the radio, such as advertising or connections, a simplified simulation is used that calculates the distances between nodes and simulates packet loss.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_visualization"><a class="anchor" href="#_visualization"></a>Visualization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open <a href="http://localhost:5555/" class="bare">http://localhost:5555/</a> in a webbrowser while the simulator is running and simulating.</p>
 </div>
 <div class="paragraph">
-<p>It supports terminal input and output for all nodes, pipe communication for exchanging data efficiently with other applications, pseudo-randomness to deterministically debug a problem, battery usage estimation, Google test integration, random configurations or user defined positions, etc.</p>
+<p>The Webserver serves the FruityMap for visualization and has some endpoints that serve dynamic JSONs that reflect the current mesh state. Be aware that the visualization shows the GAP connections and not the MeshConnections. This is an important difference. If all MeshConnections are handshaked, in a stable state and if there are no implementation errors, these visualizations match.</p>
 </div>
 <div class="paragraph">
-<p>Use cases for the simulator are:</p>
+<p>The connections are presented using arrows which originate from the central and point to the peripheral. The black dots represent the connection master bits. <strong>RSSI / globalConnectionId</strong> is shown for each connection while the nodes show "nodeId / clusterSize".</p>
+</div>
+<div class="paragraph">
+<p>The LEDs are also visualized but all LED changes are mapped to a single one.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_node_properties_in_simulator"><a class="anchor" href="#_node_properties_in_simulator"></a>Node Properties In Simulator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The serial numbers are counting upwards, starting at BBBBB. Every forth byte of the node key, starting with the first byte is equal to the serial number index + 1. So for example, BBBBB has the node key 01:00:00:00:01:00:00:00:01:00:00:00:01:00:00:00, BBBBC has the node key 02:00:00:00:02:00:00:00:02:00:00:00:02:00:00:00 and so on.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_environment"><a class="anchor" href="#_docker_environment"></a>Docker Environment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The simulator inside the docker environment has 10 nodes that take part in the mesh and additionally two assets.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_instances"><a class="anchor" href="#_instances"></a>Instances</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CherrySim works with only one instance and is able to simulate many instances of FruityMesh. Hence FruityMesh must be written in a way that the code itself has no state variables. No global or functional static variables are allowed. Every variable that needs to be saved from function call to another needs to be a part of class since CherrySim creates instances of classes for every node.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_debugging"><a class="anchor" href="#_debugging"></a>Debugging</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_globally_available_variables"><a class="anchor" href="#_globally_available_variables"></a>Globally Available Variables</h3>
+<div class="paragraph">
+<p><strong>simGlobalStatePtr</strong> always references the GlobalState of the current node that is simulated. Only one node is simulated at a time and the GlobalState object contains the full state of a FruityMesh node.</p>
+</div>
+<div class="paragraph">
+<p><strong>cherrySimInstance</strong> points to the simulator and can be used to access all other information</p>
+</div>
+<div class="paragraph">
+<p><strong>cherrySimInstance&#8594;currentNode</strong> can be used to see the complete state of the current node including SoftDevice and FruityMesh state.</p>
+</div>
+<div class="paragraph">
+<p><strong>cherrySimInstance&#8594;currentNode&#8594;currentEvent</strong> points to the event that is being processed. This can contain additional information under <em>additionalInfo</em> such as the globalPacketId for all write events.</p>
+</div>
+<div class="paragraph">
+<p><strong>cherrySimInstance&#8594;nodes</strong> provides access to all nodes in the simulation.</p>
+</div>
+<div class="paragraph">
+<p><strong>simFicrPtr</strong>, <strong>simUicrPtr</strong>, <strong>simGpioPtr</strong>, <strong>simFlashPtr</strong> point to the simulated hardware peripherals of the currently simulated node.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_debugging_with_conditional_breakpoints"><a class="anchor" href="#_debugging_with_conditional_breakpoints"></a>Debugging With Conditional Breakpoints</h3>
+<div class="paragraph">
+<p>If some event, connection or packet is causing trouble it might be useful to break the simulator once the event/connection/packet is created. To do this, a globally unique Id is assigned to each of these. Using a conditional breakpoints for debugging this can be very useful. Because of the PSRNG, the same situation can be reproduced as often as desired and logs and more can added or modified (as long as the meshing behaviour is not changed). Conditional Breakpoints can be used for:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Unit and system testing</p>
+<p><strong>globalEventIdCounter</strong>: A different ID is given to each event so that breakpoints can be set for specific events.</p>
 </li>
 <li>
-<p>Estimate battery usage</p>
+<p><strong>globalConnHandleCounter</strong>: Each connection is given a globally unique id so they can be tracked easily (After a long simulation, these will wrap and a warning will be printed)</p>
 </li>
 <li>
-<p>Implement new features</p>
-</li>
-<li>
-<p>Evaluate and improve mesh behavior</p>
-</li>
-<li>
-<p>Debug implementation problems</p>
+<p><strong>globalPacketIdCounter</strong>: Each packet is assigned a global ID so that the creation of the packet can be debugged. This is usefuly as packet creation and processing of the packet happen asynchronously and are not directly linked. Check the <em>additionalInfo</em> of the <em>currentEvent</em> during debugging and break in the <em>sd_ble_gattc_write</em> when this is assigned.</p>
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_instances"><a class="anchor" href="#_instances"></a>Instances</h3>
 <div class="paragraph">
-<p>CherrySim works with only one instance and is able to simulate many instances of FruityMesh. Hence FruityMesh must be written in a way that the code itself has no state variables. No global or functional static variables are allowed. Every variable that needs to be saved from function call to another needs to be a part of class since CherrySim creates instances of classes for every node.</p>
+<p>To break in the debugger before some error happens, use:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">static int counter = 0;
+counter++;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then check the value of the counter in the debugger, set a conditional breakpoint some lines before the error happened and compare the counter value against the count from the previous run.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_terminal_commands"><a class="anchor" href="#_terminal_commands"></a>Terminal Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The simulator has a terminal that allows to input all commands that can be used with FruityMesh nodes. Depending on the simulator configuration, either no terminal is enabled (-1), all terminals are active (0) or the terminal of a specific node is active, e.g. 1.</p>
+</div>
+<div class="paragraph">
+<p>The active terminals can be switched at runtime by using the term command, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">term 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The simulator provides a set of terminal commands as well that you can input via the terminal. The most important one is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">simstat</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It gives an overview of all available commands. Also, a number of <em>SIMSTATCOUNT</em> and <em>SIMSTATAVG</em> macros are spread throughout the code that are used to collect statistics. The results are also shown by this command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim set_position BBBBD 0.5 0.21 1.7</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sets the position in the virtual environment of the node with the serial number BBBBD to (0.5 / 0.21 / 1.7). Note: The third axis is the height axis.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim add_position BBBBD -0.17 0.23 12</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Adds (-0.17 / 0.23 / 12) to the position in the virtual environment of the node with the serial number BBBBD. Note: The third axis is the height axis.</p>
+</div>
+<div class="paragraph">
+<p>Using commands such as <strong>nodes 20</strong>, <strong>width 40</strong>, <strong>height 50</strong> allows to modify the simulation scenario. Scenarios can also be imported as JSON files by first giving the paths and then enabling JSON import (<strong>json 1</strong>). Each simulation is always run deterministically with a preset seed. This seed can be modified using e.g. <strong>seed 123</strong>, which will result in a new simulation.</p>
 </div>
 </div>
 </div>
