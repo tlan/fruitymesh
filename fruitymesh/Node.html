@@ -75,6 +75,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
       </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -572,6 +575,33 @@ request_capability 4</code></pre>
 	"type":"capability_end",
 	"amount":2 // The amount of capabilities just sent. Can be used to check if all capabilities were received.
 }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enabling_crc_checks_on_terminal_communication"><a class="anchor" href="#_enabling_crc_checks_on_terminal_communication"></a>Enabling CRC checks on Terminal Communication</h3>
+<div class="paragraph">
+<p>It is possible to add a CRCs check to all communications that go through the terminal. To do this, execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">enable_corruption_check</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After this command is sent, the firmware only accepts terminal commands that have a correct CRC32 appended at the end. For example, a terminal command may look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">action this status get_status CRC: 3968018817</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, all JSON messages from the firmware have a CRC32 appended:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Javascript hljs" data-lang="Javascript">{"nodeId":1,"type":"status","module":3,"batteryInfo":0,"clusterSize":2,"connectionLossCounter":0,"freeIn":2,"freeOut":2,"inConnectionPartner":0,"inConnectionRSSI":0, "initialized":0} CRC: 3703755059</code></pre>
 </div>
 </div>
 </div>
