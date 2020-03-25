@@ -581,7 +581,7 @@ service version, the messageType can be changed.</p></td>
 <h2 id="_terminal_commands"><a class="anchor" href="#_terminal_commands"></a>Terminal Commands</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_connection_establishment"><a class="anchor" href="#_connection_establishment"></a>Connection Establishment</h3>
+<h3 id="_connection_establishment_via_ble_address"><a class="anchor" href="#_connection_establishment_via_ble_address"></a>Connection Establishment via BLE Address</h3>
 <div class="paragraph">
 <p>Instructs a node to build a <em>MeshAccessConneciton</em> to another node. The connection state will be notified back to the requester. Refer to <a href="Specification.html" class="page">Specification</a> for the key types.</p>
 </div>
@@ -600,7 +600,82 @@ action this ma connect 00:11:22:33:44:55 1 11:22:33:44:11:22:33:44:11:22:33:44:1
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Javascript hljs" data-lang="Javascript">//Example response where nodeId 1 is now connected and handshaked with another node
-{"nodeId":1,"type":"ma_conn_state","module":10,"requestHandle":0,"vPartnerId":2001,"state":4}</code></pre>
+{"nodeId":1,"type":"ma_conn_state","module":10,"requestHandle":0,"partnerId":2001,"state":4}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_connection_establishment_via_serial_number"><a class="anchor" href="#_connection_establishment_via_serial_number"></a>Connection Establishment via Serial Number</h3>
+<div class="paragraph">
+<p>Instructs a node to build a <em>MeshAccessConneciton</em> to another node. The connection state will be notified back to the requester. Refer to <a href="Specification.html" class="page">Specification</a> for the key types.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">//Establish a connection to another device using a MeshAccessConnection
+action [nodeId] ma serial_connect [serial number] [keyId] [key] {nodeId_of_partner_after_connect = 0} {initial_keep_alive = 0} {requestHandle=0}
+
+//E.g. Connect to device BBBBQ with node key 00:11:22:...
+action 6 ma serial_connect BBBBQ 1 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF 33012 20 13</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The key can be set to FF:FF:&#8230;&#8203;:FF in which case the receiving node replaces the key with the key of the corresponding keyId from its local storage. <strong>NOTE</strong>: This key replacement feature is not allowed for MeshAccessConnections as they are not fully trusted members of the mesh. For such connections, the key must be fully specified.</p>
+</div>
+<div class="paragraph">
+<p>If no <code>nodeId_of_partner_after_connect</code> is given or it is set to 0, a virtual partner id is assigned to the connection. If it is given, the nodeId must come of the range of organization wide unique nodeIds.</p>
+</div>
+<div class="paragraph">
+<p>If no <code>initial_keep_alive</code> is given or it is set to 0, the connection will stay open indefinitely. <strong>NOTE</strong> This variable is merely a suggestion to the node. There are a lot of cases where a connection can also be prematurely disconnected.</p>
+</div>
+<div class="paragraph">
+<p>Once the connection was established or cancelled, it is answered with the following JSON:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Javascript hljs" data-lang="Javascript">{"type":"serial_connect_response","module":10,"nodeId":6,"requestHandle":13,"code":0,"partnerId":33012}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where code can have the following values:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SUCCESS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Connection was successfully opened.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMEOUT_REACHED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It was impossible to build a connection due to a timeout.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OVERWRITTEN_BY_OTHER_REQUEST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A node never tries to build a connection to more than one node. If the connection is currently in the process of trying to connect to a serial number, but is then interfered by another serial connect message, the first connect attempt is cancelled, notifying the requester with this error code. <strong>NOTE:</strong> This code is not sent if both serial connect messages contain the same values. In such a case, the only thing that changes is that the timeout of the connection is replenished.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If the <a href="Connections.html" class="page">connection state changes</a>, the sender of this message is informed about the new state with this message. In this message, the node provides the virtual partner ID that was assigned to the node connected over the <em>MeshAccessConnection</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Javascript hljs" data-lang="Javascript">//Example response where nodeId 1 is now connected and handshaked with another node
+{"nodeId":1,"type":"ma_conn_state","module":10,"requestHandle":0,"partnerId":2001,"state":4}</code></pre>
 </div>
 </div>
 </div>
