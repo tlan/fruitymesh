@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulator :: Fruitymesh</title>
-  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/Simulator.html">
+  <title>Terminal :: Fruitymesh</title>
+  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/Terminal.html">
   <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
   <link rel="stylesheet" href="../_/css/footer.css">
@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -129,32 +168,8 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -197,6 +212,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
 </ul>
   </li>
 </ul>
@@ -221,78 +239,89 @@
 </div>
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
-<h1>Simulator</h1>
+<h1>Terminal</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>The Flash simulator shows a very early stage of our mesh development. It
-is useful for showing the mesh basics, but does not reflect the current
-state of our implementation. Have a look at <a href="CherrySim.html" class="page">CherrySim</a>
-for our new simulator.</p>
-</div>
-</blockquote>
-</div>
-<div class="paragraph">
-<p>A mesh simulator is available in the <code>fruitymesh/sim/</code> folder that
-demonstrates the functionality of the algorithm. You can start it by
-either executing the .swf file directly or by opening the html page.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/simulator.png" alt="Simulator"></span></p>
+<p>The terminal can be used to communicate with nodes either by connecting to them using a debugger connection and Segger RTT or by using UART. The terminal is optional and the user can decide whether to compile it into the firmware or not by specifying this in the featureset. The terminal can be either used in <code>prompt mode</code> or <code>json mode</code> which can also be specified in the featureset using the <code>terminalMode</code> setting in the config. Prompt mode is mostly for testing and debugging, while json mode can be used to build a MeshGateway that processes received messages and sends commands into the mesh.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<h2 id="_setting_terminal_mode_local_command"><a class="anchor" href="#_setting_terminal_mode_local_command"></a>Setting Terminal Mode (Local Command)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The simulator starts with a basic configuration that
-contains a few nodes. The <em>ClusterScore</em> is calculated by using solely the
-<em>clusterSize</em> and the free connections that a node has. The simulation is started by clicking on <strong>Start Advertising</strong>. The nodes then
-advertise to their neighbours and connect or disconnect based on
-the algorithm. You can see some statistics in the text box in the lower
-left. You can find info about the individual nodes by hovering over them
-with your mouse cursor.</p>
+<p>When working with UART (Terminal and UART must be enabled), FruityMesh
+supports a convenient blocking terminal mode with echo back
+functionality. For communication with another device such as a
+MeshGateway, an interrupt based input method and JSON output is used. To
+toggle between these two modes, there are two commands:</p>
 </div>
 <div class="paragraph">
-<p>For more detailed information on the algorithm have a look at
-<a href="The-FruityMesh-Algorithm.html" class="page">The FruityMesh Algorithm</a>.</p>
+<p><code>startterm</code></p>
 </div>
-<div class="sect2">
-<h3 id="_modifying_nodes"><a class="anchor" href="#_modifying_nodes"></a>Modifying Nodes</h3>
 <div class="paragraph">
-<p>A number of random nodes can be created by
-entering their number and clicking on <strong>Create Random Nodes</strong>. Moreover,
-you can add a new node by double-clicking anywhere in the empty space of
-the simulation. Nodes can be moved via drag and drop. Their transmit
-range can be modified by hovering over the node and rotating the mouse
-wheel. Removing a node is achieved by <code>Alt + Mouse click</code>.</p>
+<p>Using <em>startterm</em> invokes a blocking mode where all functionality is
+halted and user input is received in a busy loop until a line feed '\r'
+is received. The command is then processed and other functionality
+is resumed. The input is echoed back on the terminal.
+Backspace is supported as well for most terminal programs. If the
+command isn&#8217;t recognized, a warning is echoed.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_importing_exporting_node_configurations"><a class="anchor" href="#_importing_exporting_node_configurations"></a>Importing &amp; Exporting Node Configurations</h3>
 <div class="paragraph">
-<p>You can export a JSON of
-the current node configuration and copy/paste it in a text
-editor for later use.</p>
+<p><code>stopterm</code></p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_send_data"><a class="anchor" href="#_send_data"></a>Send Data</h3>
 <div class="paragraph">
-<p>To send a data packet through the mesh, use
-<code>Ctrl + Mouse click</code> on any node. Data flow is illustrated as
-green flashing arrows in one direction and blue flashing arrows in the
-other direction.</p>
+<p>The <em>stopterm</em> command switches the node into an interrupt based input
+mode where terminal input does not affect the functionality until a line
+feed '\r' is received. All output messages are in JSON format.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rebooting_local_command"><a class="anchor" href="#_rebooting_local_command"></a>Rebooting (Local Command)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>reset</code></p>
+</div>
+<div class="paragraph">
+<p>To reset the node via the terminal, enter this command
+and a software reboot is performed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enabling_crc_checks_on_terminal_communication"><a class="anchor" href="#_enabling_crc_checks_on_terminal_communication"></a>Enabling CRC checks on Terminal Communication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is possible to add a CRCs check to all communications that go through the terminal. This might be necessary if the communication channel is unreliable. To do this, execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">enable_corruption_check</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After this command is sent, the firmware only accepts terminal commands that have a correct CRC32 appended at the end. For example, a terminal command may look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">action this status get_status CRC: 3968018817</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, all JSON messages from the firmware have a CRC32 appended:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Javascript hljs" data-lang="Javascript">{"nodeId":1,"type":"status","module":3,"batteryInfo":0,"clusterSize":2,"connectionLossCounter":0,"freeIn":2,"freeOut":2,"inConnectionPartner":0,"inConnectionRSSI":0, "initialized":0} CRC: 3703755059</code></pre>
 </div>
 </div>
 </div>
 </div>
 </article>
 <aside class="article-aside hidden" role="navigation">
-  <h3 class="toc-title">Simulator</h3>
+  <h3 class="toc-title">Terminal</h3>
   <div id="article-toc"></div>
 </aside>
   </main>
@@ -304,7 +333,7 @@ other direction.</p>
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '..'
-  window.antora.pagePath = '/fruitymesh/Simulator.html'
+  window.antora.pagePath = '/fruitymesh/Terminal.html'
 </script>
 <script src="../_/js/site.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js"></script>

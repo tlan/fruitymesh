@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -280,7 +298,7 @@
 <p>FruityMesh uses so called featuresets for creating different distributions for different use-cases. A featureset defines the compile time and run time configuration for a node. The cmake build process can be configured differently for a featureset, a number of different defines or macros can be used during compile time and different code is used during runtime. This allows us to tailor the firmware functionality and size to each use-case and also allows FruityMesh to compile for different chipsets from the same source. You can specify the featureset by calling cmake with <code>cmake --build . --target featureset_name</code>.</p>
 </div>
 <div class="paragraph">
-<p>A featureset can contain a number of <a href="BoardConfig.html" class="page">Board Configurations</a> which allows you to flash and run the binary of the featureset on a number of different boards.</p>
+<p>A featureset can contain a number of <a href="BoardConfig.html" class="page">Board Configurations</a> which allows you to flash and run the binary of the featureset on a number of different boards. The correct board configuration such as the pin configuration is then loaded by FruityMesh at runtime depending on the boardId stored in the <a href="Specification.html#UICR" class="page">UICR</a>. If no boardId is stored in the UICR, the default boards will be loaded from <code>Boardconfig.cpp</code></p>
 </div>
 </div>
 </div>
@@ -313,6 +331,14 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>We&#8217;d love to develop the FruityMesh protocol as an interoperable protocol that works across devices from different developers. If you want to make any changes to the protocol itself, please contact us first so that we can work out a mutual agreement. Every implementation that is compatible with the current official release of FruityMesh is welcome to use the M-Way Solutions Company identifier (0x024D) in the manufacturer specific data along with the current mesh identifier. Be sure to read the <a href="Specification.html" class="page">Specification</a> for some basics. This is only very basic documentation, we try to continually improve the specification and add more details. In the meantime, do not hesitate to contact us or have a look in the implementation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_documentation"><a class="anchor" href="#_about_documentation"></a>About Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When adding documentation for a module, make sure to check the <a href="ModuleDocumentationTemplate.html" class="page">Module Documentation Template</a>.</p>
 </div>
 </div>
 </div>

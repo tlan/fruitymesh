@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -358,6 +376,51 @@ set_active 0 scan on //activates the scan module
 set_active 0 adv off //deactivates the advertising module</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Once received, the message is replied by the following message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">{
+    "nodeId":2,
+    "type":"set_active_result",
+    "module":6,
+    "requestHandle":0,
+    "code":0
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where "code" can have one of the following values:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 90.9091%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SUCCESS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NO_CONFIGURATION, the module was activate/deactivated but it was impossible to save the state as the module seems to have no configuration. (Report this to a firmware developer if it ever happens.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NO_SUCH_MODULE, the given module does not exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RECORD_STORAGE_ERROR, the module does exist and does have a configuration but the record storage was unable to save the config. The best course of action is probably to try again later as the node seems to be busy right now.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

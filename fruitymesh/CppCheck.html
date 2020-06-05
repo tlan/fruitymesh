@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basic Usage :: Fruitymesh</title>
-  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/BasicUsage.html">
+  <title>Cppcheck :: Fruitymesh</title>
+  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/CppCheck.html">
   <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
   <link rel="stylesheet" href="../_/css/footer.css">
@@ -47,7 +47,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="Quick-Start.html">Quick Start</a>
       </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="BasicUsage.html">Basic Usage</a>
       </li>
   <li class="nav-item" data-depth="1">
@@ -81,7 +81,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
       </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
@@ -239,116 +239,110 @@
 </div>
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
-<h1>Basic Usage</h1>
+<h1>Cppcheck</h1>
 <div class="sect1">
-<h2 id="_led_codes"><a class="anchor" href="#_led_codes"></a>LED Codes</h2>
+<h2 id="_general"><a class="anchor" href="#_general"></a>General</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When a node is powered up, the red LED is flashing to signal that it is not connected. Once two nodes are connected to each other, they perform a handshake, which is signaled by a blue LED. Once they are connected and the handshake has taken place, they signal their connection with a single short green flash. The number of green flashes corresponds to the number of active connections to other nodes. If your hardware doesn&#8217;t have colored LEDs, the LEDs are LED1 for red, LED2 for green and LED3 for blue.</p>
+<p>CherrySim uses <a href="http://cppcheck.sourceforge.net">Cppcheck</a>, a static code analysis tool that helps us to spot common coding errors quickly.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_terminal_commands"><a class="anchor" href="#_terminal_commands"></a>Terminal Commands</h2>
+<h2 id="_prerequisite"><a class="anchor" href="#_prerequisite"></a>Prerequisite</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All classes can implement An interface called
-<code>TerminalCommandListener</code> can be implemented for all classes. It allows each class to listen for commands entered via either the UART or Segger RTT terminal. These commands can be entered by the user or by a program such as a MeshGateway that connects a mesh to the internet.</p>
+<p>Cppcheck 2.0 must be installed.</p>
 </div>
-<div class="paragraph">
-<p>Use a terminal or similar application to use one of the following commands as
-detailed in <a href="Quick-Start.html" class="page">Quick Start</a>.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Some basic commands for testing the mesh are listed below. Content in
-[brackets] has to be replaced by the user.</p>
+<p>Cppcheck is used in our pipeline. For the most accurate results for the internal development environment, it is recommended to do small commits often so that the pipeline spots error as soon as possible. If you want to execute Cppcheck locally however, you have the following options (both have limitations, see below):</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>reset</strong>: Reboots the system.</p>
+<p>(Recommended) <strong>Use the CMake GUI to analyze the Visual Studio Solution</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Copy <code>cppcheck.cppcheck.template</code> to <code>cppcheck.cppcheck</code> inside your Fruitymesh repository</p>
 </li>
 <li>
-<p><strong>status</strong>: Displays the node status, including its connections.</p>
+<p>Modify <code>cppcheck.cppcheck</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>All occurrences of <code>PATH_TO_CMAKE_DIRECTORY</code> must be replaced with your CMake build directory. For example, <code>PATH_TO_CMAKE_DIRECTORY/CherrySim.sln</code> may become <code>D:/projects/cmakebuild/CherrySim.sln</code>.</p>
 </li>
 <li>
-<p><strong>data</strong>: Sends a test packet to all connected nodes and prints a response
-once the output was received.</p>
-</li>
-<li>
-<p><strong>datal</strong>: Sends a big test packet that is automatically split into
-multiple writes over the mesh and prints a response when it was received.</p>
-</li>
-<li>
-<p><strong>action 0 io led [on/off]</strong>: Broadcasts a packet to all nodes to switch
-on/off their leds permanently.</p>
-</li>
-<li>
-<p><strong>action 0 status get_device_info</strong>: Asks all nodes for their device
-information.</p>
-</li>
-<li>
-<p><strong>debugtags</strong>: Displays all log tags that are currently enabled.</p>
-</li>
-<li>
-<p><strong>debug [tagname]</strong>: Toggle log output of the given tag. (ERROR and
-WARNING are always printed.)</p>
-</li>
-<li>
-<p><strong>debug all</strong> : Toggles logging of all messages, no matter what their
-tag is (these are a lot of messages).</p>
-</li>
-<li>
-<p><strong>settime [unix timestamp]</strong>: Sets the time for the current node.</p>
-</li>
-<li>
-<p><strong>sendtime</strong>: Broadcasts the current time over the mesh.</p>
-</li>
-<li>
-<p><strong>gettime</strong>: Displays the current time.</p>
-</li>
-<li>
-<p><strong>startterm</strong>: Displays a prompt and echos back the user&#8217;s input
-(default). Backspace is supported.</p>
-</li>
-<li>
-<p><strong>stopterm</strong>: Uses an interrupt based input mode. Used for
-communication with a control application. There is no echo of the
-user input.</p>
-</li>
-<li>
-<p><strong>bufferstat</strong>: Displays the contents of the JOIN_ME buffer, filled with discovery packets from surrounding nodes.</p>
-</li>
-<li>
-<p><strong>get_modules [nodeId]</strong>: Displays a list of modules from the node and
-whether they are active or not.</p>
+<p>All occurrences of <code>PATH_TO_FRUITYMESH_REPOSITORY</code> must be replaced with the path of the Fruitymesh Repository. For example, <code>PATH_TO_FRUITYMESH_REPOSITORY/cherrysim/json.hpp</code> may become <code>D:/projects/fruitymesh/cherrysim/json.hpp</code>.</p>
 </li>
 </ul>
 </div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Have a look at the <a href="Specification.html#_NodeIDs" class="page">NodeIDs section</a> for
-some insights on how to address nodes individually or in groups.</p>
+</li>
+<li>
+<p>Open the CppCheck GUI</p>
+</li>
+<li>
+<p>Make sure that the following is ticked: Edit &#8594; Preferences &#8594; General &#8594; "Enable inline suppressions"</p>
+</li>
+<li>
+<p>File &#8594; Open Project File &#8594; Select the modified cppcheck.cppcheck</p>
+</li>
+<li>
+<p>If asked if the build dir should be created, click "Yes"</p>
+</li>
+<li>
+<p>Cppcheck now scans the repository. This might take some time.</p>
+</li>
+</ul>
 </div>
-</blockquote>
+</li>
+<li>
+<p>(Advanced) <strong>Use CMake to execute Cppcheck on Windows</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>According to <a href="https://cmake.org/cmake/help/v3.17/prop_tgt/LANG_CPPCHECK.html#prop_tgt:%3CLANG%3E_CPPCHECK">the CMake docs</a>, this is only supported with Makefile and Ninja Generators but will produce the closest result to the one of our pipeline. Cppcheck must be placed in your PATH variable.</p>
+</li>
+<li>
+<p>Download and install <a href="https://releases.llvm.org/9.0.0/LLVM-9.0.0-win32.exe">clang 9.0 32-bit</a> (part of LLVM). We highly recommend not changing the default installation path so you can directly use the commands down below as they are.</p>
+</li>
+<li>
+<p>Create a sibling directory next to the Fruitymesh repository</p>
+</li>
+<li>
+<p>Inside that directory execute the following command in a terminal: <code>cmake ../fruitymesh -G "Unix Makefiles" -DFORCE_CPPCHECK=ON -D CMAKE_C_COMPILER="C:/Program Files (x86)/LLVM/bin/clang.exe" -D CMAKE_CXX_COMPILER="C:/Program Files (x86)/LLVM/bin/clang++.exe"</code>. If you changed the default installation path of clang, replace the values of <code>CMAKE_C_COMPILER</code> and <code>CMAKE_CXX_COMPILER</code> to the paths to clang on your machine.</p>
+</li>
+<li>
+<p>Execute the following and look out for the occurring warnings: <code>cmake --build .</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_more_commands"><a class="anchor" href="#_more_commands"></a>More Commands</h2>
+<h2 id="_limitations"><a class="anchor" href="#_limitations"></a>Limitations</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>FruityMesh is structured in Modules. Each module
-provides its own set of commands. A detailed listing of all available
-modules and their commands can be found on the
-<a href="Modules.html" class="page">Modules</a> page.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Both approaches don&#8217;t mimic the behavior of the pipeline exactly, so both have the potential to show some warnings that are not on the pipeline and vice versa.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </article>
 <aside class="article-aside hidden" role="navigation">
-  <h3 class="toc-title">Basic Usage</h3>
+  <h3 class="toc-title">Cppcheck</h3>
   <div id="article-toc"></div>
 </aside>
   </main>
@@ -360,7 +354,7 @@ modules and their commands can be found on the
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '..'
-  window.antora.pagePath = '/fruitymesh/BasicUsage.html'
+  window.antora.pagePath = '/fruitymesh/CppCheck.html'
 </script>
 <script src="../_/js/site.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js"></script>

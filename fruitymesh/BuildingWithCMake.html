@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -238,17 +256,20 @@
 <p><a href="https://cmake.org/download/">Download</a> and install CMake. You can find the minimum required CMake version in the first line of ./CMakeLists.txt in the root of this repository. On windows, make sure that the installation wizard adds CMake to the PATH variable.</p>
 </li>
 <li>
-<p>Make sure a C++17 32 bit compatible compiler is installed (e.g. Visual Studio 2017 or GCC 8)</p>
+<p>Some build steps also require <a href="https://www.python.org/downloads/">python 3</a>. Make sure that some python 3 version is installed (e.g. Python 3.8.1).</p>
 </li>
 <li>
-<p>Some build steps also require <a href="https://www.python.org/downloads/">python 3</a>. Make sure that some python 3 version is installed (e.g. Python 3.8.1).</p>
+<p>(For Simulator) Make sure a C++17 32 bit compatible compiler is installed (e.g. Visual Studio 2017, GCC 8, or Clang 9)</p>
+</li>
+<li>
+<p>(For Firmware) Make sure the correct Embedded Toolchain is installed, as described in <a href="Quick-Start.html#Toolchain" class="page">Quick Start</a>.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_native_build_files_for_the_simulator"><a class="anchor" href="#_creating_native_build_files_for_the_simulator"></a>Creating native build files for the simulator</h2>
+<h2 id="BuildingSimulator"><a class="anchor" href="#BuildingSimulator"></a>Creating native build files for the simulator (x86)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As is always the case with CMake, an "out-of-source build" should be preferred. This means that you create the project files in a directory that is separate from the rest of the repository. While it is possible to create such an "out-of-source build" in a directory within the repository, a sibling directory is preferred as some build configurations might not work properly with in-repo directories.</p>
@@ -272,7 +293,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_native_build_files_for_the_feature_sets"><a class="anchor" href="#_creating_native_build_files_for_the_feature_sets"></a>Creating native build files for the feature sets</h2>
+<h2 id="BuildingFirmware"><a class="anchor" href="#BuildingFirmware"></a>Creating native build files for the chip firmware</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Building the feature sets is mostly the same as with the simulator. The only difference is that some extra parameters need to be passed to cmake:</p>
@@ -287,7 +308,7 @@
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-The GCC_PATH must be specified using forward slashes ("/"), not backward slashes ("\").
+The GCC_PATH must be specified using forward slashes ("/"), not backward slashes ("\"). If you accidentally used backward slashes you have to remove all the files that CMake just created in the current working directory and execute the command again with forward slashes.
 </td>
 </tr>
 </table>
@@ -301,17 +322,17 @@ The GCC_PATH must be specified using forward slashes ("/"), not backward slashes
 <p>Once the native build files are created, it is possible to create all the executables without interacting with the native compiler directly. To do this, while being in the directory where you created the native build files, execute <code>cmake --build .</code>. If you are using visual studio, the .exe files are then located inside the <code>Debug</code> directory.</p>
 </div>
 <div class="sect2">
-<h3 id="_trouble_shooting"><a class="anchor" href="#_trouble_shooting"></a>Trouble shooting</h3>
+<h3 id="Troubleshooting"><a class="anchor" href="#Troubleshooting"></a>Troubleshooting</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>32 bit compilation must be available. On some systems this is not the case by default. If you are using Visual Studio, the flag <code>-A Win32</code> forces cmake to generate a 32 bit compatible solution.</p>
+<p>(For Simulator) 32 bit compilation must be available. On some systems this is not the case by default. If you are using Visual Studio, the flag <code>-A Win32</code> forces cmake to generate a 32 bit compatible solution.</p>
 </li>
 <li>
-<p>If several visual studio versions are installed (e.g. 2017 + 2019), make sure that you are starting the solution file with the correct visual studio version.</p>
+<p>(For Simulator) If several visual studio versions are installed (e.g. 2017 + 2019), make sure that you are starting the solution file with the correct visual studio version.</p>
 </li>
 <li>
-<p>"Invalid character escape": If you pass any paths with white spaces you have to put them into quotation marks. If cmake still complains about wrong escape chars you have to remove all the cache files.</p>
+<p>(For Simulator &amp; Firmware) "Invalid character escape": If you pass any paths with white spaces you have to put them into quotation marks. If cmake still complains about wrong escape chars you have to remove all the cache files.</p>
 </li>
 </ol>
 </div>

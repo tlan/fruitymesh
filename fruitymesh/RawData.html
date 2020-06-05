@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sending Raw Data :: Fruitymesh</title>
+  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/RawData.html">
+  <meta name="generator" content="Antora 2.1.1">
+  <link rel="stylesheet" href="../_/css/site.css">
+  <link rel="stylesheet" href="../_/css/footer.css">
+</head>
+
+<body class="article">
+  <header class="header" role="banner">
+<header class="header" role="banner">
+  <div class="navbar-top">
+    <a class="navbar-logo" id="fruitymesh-logo-padding" href="https://mwaylabs.github.io/fruitymesh/fruitymesh/index.html">
+      <div class="navbar-item">
+        <img src="../_/img/fruitymesh_logo.png" alt="Fruitymesh">
+      </div>
+    </a>
+    <div class="navbar-item">
+      <div id="search-wrapper" class="border-color-fruitymesh>
+        <input id="search-input" type="text" placeholder="Search...">
+      </div>
+    </div>
+  </div>
+  <nav class="navbar-bottom fruitymesh-header-color">
+    <a href="https://github.com/mwaylabs/fruitymesh">
+      <div class="navbar-item">Fruitymesh on Github</div>
+    </a>
+  </nav>
+</header>
+
+</header>
+  <div class="main-wrapper">
+<div class="navigation-container" data-component="" data-version="master">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <button class="navigation-toggle"></button>
+  <nav class="nav-menu">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Quick-Start.html">Quick Start</a>
+      </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="BasicUsage.html">Basic Usage</a>
+      </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Concepts.html">Concepts</a>
+      </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Features.html">Features</a>
+      </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Specification.html">Specification</a>
+      </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Developers</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Developers.html">Developer Overview</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Class-Structure.html">Class Structure</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Debugging.html">Debugging</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Mesh</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Node.html">Node</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Modules</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Modules.html">Module Overview</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingModule.html">AdvertisingModule</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="DebugModule.html">DebugModule</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="DfuModule.html">DfuModule</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="EnrollmentModule.html">EnrollmentModule</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="IoModule.html">IoModule</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="MeshAccessModule.html">MeshAccessModule</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanningModule.html">ScanningModule</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="StatusReporterModule.html">StatusReportModule</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Simulator</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CherrySim.html">CherrySim</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Measurements</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Battery-Consumption.html">Battery Consumption</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Throughput.html">Throughput</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">The Fruitymesh Algorithm</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="The-FruityMesh-Algorithm.html">The Fruitymesh Algorithm Basics</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="The-Algorithm-in-Detail.html">The Algorithm in Detail</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Tutorials.html">Tutorial Overview</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Implementing-a-Custom-Module.html">Implementing a Custom Module</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<article class="doc"><a name="section-top"></a>
+<h1>Sending Raw Data</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two variants of raw data. There is <a href="#RawData">raw data</a> for larger transfers such as e.g. zip files and <a href="#RawDataLight">lightweight raw data</a> for sending small messages with custom data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="RawData"><a class="anchor" href="#RawData"></a>Raw Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sending raw data can be used to send any arbitrary data, e.g. zip files. The data to be sent is split into chunks that are then sent through the mesh. The data to be sent is called the "payload".</p>
+</div>
+<div class="sect2">
+<h3 id="_general_overview"><a class="anchor" href="#_general_overview"></a>General Overview</h3>
+<div class="imageblock">
+<div class="content">
+<img src="_images/raw_data_flow.png" alt="raw data flow">
+</div>
+</div>
+<div class="paragraph">
+<p>Every raw data transaction (except <em>raw_data_light</em>, which will be explained later) starts with a <em>raw_data_start</em> message. This message includes the amount of chunks in the transaction and the protocol of the payload. Once the receiver receives this message, it answers with a <em>raw_data_start_received</em> message, which indicates to the sender that the receiver is ready to receive the chunks.</p>
+</div>
+<div class="paragraph">
+<p>When the sender receives the <em>raw_data_start_received</em> message, it starts sending all <em>raw_data_chunk</em> objects. In addition of payload data, every <em>raw_data_chunk</em> includes a chunk ID, which is a unique (regarding the current transaction) ascending number, starting at 1 for the first <em>raw_data_chunk</em> object. chunk ID 0 is reserved for the <em>raw_data_start</em>. Using this chunk ID, and the information of the amount of chunks form the <em>raw_data_start</em> message, the receiver is able to determine the last chunk in the transaction. Once it receives the last chunk, it reports back to the sender using a single <em>raw_data_report</em>. This message includes the chunk IDs of up to three missing chunks. If all chunks were received, the list of missing chunks is empty, which tells the sender that the transaction was successful. If however, the list of missing chunks is not empty, the sender must send the chunks with the corresponding chunk IDs again. The last chunk IDs of the previous <em>raw_data_report</em> message acts as a last chunk, regarding the sending of additional <em>raw_data_report</em>. This sending of <em>raw_data_chunk</em> and <em>raw_data_report</em> is repeated until <em>raw_data_report</em> has an empty list of missing chunk IDs.</p>
+</div>
+<div class="paragraph">
+<p>All devices involved in the communication (sender, receiver, and the mesh) are able to cancel the communication by sending a <em>raw_data_error</em> message to the sender as well as the receiver. If the sender or the receiver is the device that hung up the transmission, it is allowed to not send the error to itself. The <em>raw_data_error</em> message includes an error code, indicating the reason for the cancellation. It is possible to receive a <em>raw_data_error</em> message without an open transmission. This can happen if the sender cancels the transmission using a <em>raw_data_error</em>, but this error is dropped during the transmission. The receiver then might send another <em>raw_data_error</em> indicating a timeout while the sender already canceled the communication. Such messages without an open transmission may be discarded.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementation"><a class="anchor" href="#_implementation"></a>Implementation</h3>
+<div class="paragraph">
+<p>As any other message in the mesh, every message in the raw send protocol could be dropped. This section describes how an implementation must behave in such scenarios. It also describes the obligations of the sender and the receiver.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Dropped message</th>
+<th class="tableblock halign-left valign-top">Reaction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">raw_data_start<br>
+raw_data_start_received</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The sender must send the <em>raw_data_start</em> again after a timeout of 10 seconds or stop the transmission. The receiver has to be able to handle several successive <em>raw_data_start</em> messages with the same content (in case the <em>raw_data_start_received</em> message is dropped) and close a dropped connection after a timeout of 15 seconds (in case the sender does not send another <em>raw_data_start</em>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">raw_data_chunk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Missing chunks are reported in <em>raw_data_report</em> once the last chunk is received. These missing chunks must be resent.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Last raw_data_chunk or raw_data_report</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Using the ChunkID, both sender and receiver are able to identify the last data chunk. If this message or the <em>raw_data_report</em> are dropped, the sender must send the last chunk again. This means that the receiver is only allowed to save the last chunk ID once the first chunk after a <em>raw_data_report</em> is received, not immediately after the <em>raw_data_report</em> is sent.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">raw_data_error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If a <em>raw_data_error</em> message is dropped, the sender or receiver has already canceled the transmission, leading to the sending of another <em>raw_data_error</em> upon receiving an invalid out-of-transmission message or a <em>raw_data_error</em> indicating a timeout. In the rare cases where the origin of the <em>raw_data_error</em> is the mesh itself, it could happen that both <em>raw_data_error</em> messages are dropped. In such cases the connection is still up, but will probably create another <em>raw_data_error</em> once the ill-formed chunk is sent again.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_transmission_start"><a class="anchor" href="#_transmission_start"></a>Transmission Start</h4>
+<div class="paragraph">
+<p><code>raw_data_start [receiverId] [destinationModuleId] [numChunks] [protocolId] {requestHandle = 0}</code></p>
+</div>
+<div class="paragraph">
+<p>This command starts a raw data transmission. The payload shall be sent using <em>raw_data_chunk</em> messages.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">receiverId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The node ID that this message should be sent to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">destinationModuleId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The module ID is used for giving context to this message. If the transmission should only be printed on the receiver and otherwise be ignored by the firmware, it must be set to 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numChunks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of Chunks for the total message. Must not be 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">protocolId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of the protocol IDs mentioned in the table below</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requestHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A handle that can be used to distinguish between different raw data transmissions (Default: 0)</p></td>
+</tr>
+</tbody>
+</table>
+<table id="RawDataProtocolId" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Raw Data Protocol ID</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invalid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invalid protocol ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A raw HTTP request or response</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GZIPPED_JSON</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A JSON that was gzipped</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KBM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mway proprietary building automation protocol</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 - 199</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reserved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not yet used</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200 - 255</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User defined</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">May be different in each implementation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If received by a device with a terminal, <em>raw_data_start</em> is printed out like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+	"nodeId":5,
+	"type":"raw_data_start",
+	"module":4,
+	"numChunks":3,
+	"protocol":1,
+	"fmKeyId":2,
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_accept_transmission"><a class="anchor" href="#_accept_transmission"></a>Accept Transmission</h4>
+<div class="paragraph">
+<p><code>raw_data_start_received [receiverId] [destinationModuleId] {requestHandle = 0}</code></p>
+</div>
+<div class="paragraph">
+<p>Once a <em>raw_data_start</em> is received, the receiver shall send the sender a <em>raw_data_start_received</em> message.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">receiverId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The node ID that this message should be sent to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">destinationModuleId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The module ID is used for giving context to this message. If the transmission should only be printed on the receiver and otherwise be ignored by the firmware, it must be set to 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requestHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A handle that can be used to distinguish between different raw data transmissions (Default: 0)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If received by a JSON-capable device, the <em>raw_data_start</em> is printed out like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+	"nodeId":5,
+	"type":"raw_data_start_received",
+	"module":4,
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_subsequent_chunk_messages"><a class="anchor" href="#_subsequent_chunk_messages"></a>Subsequent Chunk Messages</h4>
+<div class="paragraph">
+<p><code>raw_data_chunk [receiverId] [destinationModuleId] [chunkId] [payloadHex] {requestHandle = 0}</code></p>
+</div>
+<div class="paragraph">
+<p>Once a raw transmission has been started, the appropriate number of chunks should follow in the correct order. Once the last chunk is received by the receiver, it is possible to reassemble and parse the whole message. The <em>moduleId</em> is present in all chunks so that they can be assigned to the correct stream and to avoid clashes between different modules. A module can send intermittent data streams if is uses different request handles.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">receiverId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The NodeID that this message should be sent to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">destinationModuleId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ModuleId is used for giving context to this message. If the transmission should only be printed on the receiver and otherwise be ignored by the firmware, it must be set to 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chunkId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID of this data chunk starting from 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">payloadHex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HexString or Base64String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The binary data to send. E.g. AA:BB:CC. The maximum length is 60 bytes for HexStrings, 120 bytes for Base64Strings.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requestHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A handle that can be used to distinguish between different raw data transmissions (Default: 0)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If received by a JSON-capable device, the <em>raw_data_start</em> is printed out like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+	"nodeId":5,
+	"type":"raw_data_chunk",
+	"module":4,
+	"chunkId":1,
+	"payload":"abcdeQ==",
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_send_report"><a class="anchor" href="#_send_report"></a>Send Report</h4>
+<div class="paragraph">
+<p><code>raw_data_report [receiverId] [destinationModuleId] [MissingChunkIds] {requestHandle = 0}</code></p>
+</div>
+<div class="paragraph">
+<p>Once the last chunk is received, the receiver sends this message to the sender, indicating either a successful transmission (empty missing chunk IDs) or informs the sender about missing chunk IDs.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">receiverId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The node ID that this message should be sent to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">destinationModuleId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The module ID is used for giving context to this message. If the transmission should only be printed on the receiver and otherwise be ignored by the firmware, it must be set to 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MissingChunkIds</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated integers or the literal string "-" (without "")</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Up to three chunk IDs of missing chunks. Must not contain spaces! E.g. 2,17,312</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requestHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A handle that can be used to distinguish between different raw data transmissions (Default: 0)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If received by a JSON-capable device, the <em>raw_data_start</em> is printed out like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+	"nodeId":5,
+	"type":"raw_data_report",
+	"module":4,
+	"missing":[2,17,312],
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or in cases where the transmission was successful:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+	"nodeId":5,
+	"type":"raw_data_report",
+	"module":4,
+	"missing":[],
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_send_error"><a class="anchor" href="#_send_error"></a>Send Error</h4>
+<div class="paragraph">
+<p><code>raw_data_error [receiverId] [destinationModuleId] [errorCode] [destination] {requestHandle = 0}</code></p>
+</div>
+<div class="paragraph">
+<p>This command indicates that some error occurred and the transmission must be closed. Will is sent to the receiver as well as the sender.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Error Code</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unexpected end of transmission</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Three timeouts happened without receiving a message from the transmission partner.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not in a transmission</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A <em>raw_data_chunk</em> or <em>raw_data_report</em> was received without an open transmission.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Malformed Message</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A message was received which was malformed and did not fit any other error code.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unsupported Protocol</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The receiver is unable to interpret the given protocol.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Malformed GZIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The receiver got all chunks but could could not unpack the GZIP.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Malformed Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Thrown in case of a GZIP communication. The unpacking worked, but the provided type inside the GZIP JSIN was unknown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invalid Chunk ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The given chunk ID was out of range.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0, 4 - 199</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reserved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not yet used</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200 - 255</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User defined</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">May be different in each implementation.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Destination Code</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sender</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The error is sent to the sender.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Receiver</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The error is sent to the receiver.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The error is sent both to the sender and the receiver.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If received by a JSON-capable device, the <em>raw_data_error</em> is printed out like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+	"nodeId":5,
+	"type":"raw_data_error",
+	"module":4,
+	"error":1,
+	"destination":1
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="RawDataLight"><a class="anchor" href="#RawDataLight"></a>Lightweight Raw data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sending messages that fit into a single mesh packet can be done by using raw_data_light with minimal overhead and almost no implementation effort.</p>
+</div>
+<div class="sect2">
+<h3 id="_terminal_command"><a class="anchor" href="#_terminal_command"></a>Terminal Command</h3>
+<div class="paragraph">
+<p><code>raw_data_light [receiverId] [destinationModuleId] [protocolId] [payload] {requestHandle = 0}</code></p>
+</div>
+<div class="paragraph">
+<p>Sends a single chunk of arbitrary data to the receiver. There is no guarantee that the message is transmitted if the mesh is in the process of restructuring or busy. The sender should provide some resending logic if desired.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command Parameter</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">receiverId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The node ID that this message should be sent to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">destinationModuleId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The module ID is used for giving context to this message. If the transmission should only be printed on the receiver and otherwise be ignored by the firmware, it must be set to 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">protocolId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of the protocol IDs mentioned in the table of raw_data_start</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">payloadHex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HexString or Base64String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The binary data to send. E.g. AA:BB:CC. The maximum length is 60 bytes for HexStrings, 120 bytes for Base64Strings.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requestHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A handle that can be used to distinguish between different raw data transmissions (Default: 0)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_terminal_response"><a class="anchor" href="#_terminal_response"></a>Terminal Response</h3>
+<div class="paragraph">
+<p>If received by a JSON-capable device, then <em>raw_data_start</em> is printed out like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+	"nodeId":5,
+	"type":"raw_data_light",
+	"module":4,
+	"protocol":2,
+	"payload":"abcdeQ==",
+	"requestHandle":0
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The mesh message is documented <a href="#RawDataLightMessage">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_raw_data_start_message"><a class="anchor" href="#_raw_data_start_message"></a>Raw Data Start Message</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conn Packet Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Type = 54, Action Type = 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of Chunks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The total amount of raw_data_chunk messages for this transmission.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Protocol ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See above for a list of valid protocol IDs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fmKeyId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html" class="page">See EncryptionKeys Heading.</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_raw_data_start_received_message"><a class="anchor" href="#_raw_data_start_received_message"></a>Raw Data Start Received Message</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conn Packet Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Type = 54, Action Type = 1.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_raw_data_error_message"><a class="anchor" href="#_raw_data_error_message"></a>Raw Data Error Message</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conn Packet Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Type = 54, Action Type = 4.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See above for a list of possible error codes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Destination Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See above for a list of possible Destination Codes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_raw_data_chunk_message"><a class="anchor" href="#_raw_data_chunk_message"></a>Raw Data Chunk message</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conn Packet Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Type = 54, Action Type = 2.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chunk ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ID of this chunk. The first chunk has ID 1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reserved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A reserved value that must be set to 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1-60</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8[1-60]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">payload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The payload.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_raw_data_report_message"><a class="anchor" href="#_raw_data_report_message"></a>Raw Data Report Message</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Conn Packet Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Type = 54, Action Type = 3.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u32[3]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">missings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The IDs of the missing chunks.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="RawDataLightMessage"><a class="anchor" href="#RawDataLightMessage"></a>Raw Data Light Message</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketHeader" class="page">connPacketHeader</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">header</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Type = 55</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">moduleId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The id of the module that should process the message. 0 to only print it at the gateway.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requestHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to identify the message</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#RawDataProtocolId">RawDataProtocolId</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">protocolId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raw Data Protocol Id as given above</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1-60</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u8[1-60]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">payload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The custom payload to send</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</article>
+<aside class="article-aside hidden" role="navigation">
+  <h3 class="toc-title">Sending Raw Data</h3>
+  <div id="article-toc"></div>
+</aside>
+  </main>
+</div>
+  <footer class="footer fruitymesh-footer-padding">
+<p>This project is under active development at the <a href="http://www.mwaysolutions.com/" >M-Way Solutions GmbH,</a> Germany.</p>
+<p>We use FruityMesh ourselves in conjunction with our custom MeshGateway to build services such as connected lights, asset tracking and much more for our customers.</p>
+</footer>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '..'
+  window.antora.pagePath = '/fruitymesh/RawData.html'
+</script>
+<script src="../_/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js"></script>
+<script src="../_/js/vendor/search.js"></script>
+<script async src="../_/../search-index.js"></script>
+<script src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/zoom.js"></script>
+<script>hljs.initHighlighting()</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '#article-toc',
+    contentSelector: 'article',
+    headingSelector: 'h2, h3, h4, h5, h6',
+    collapseDepth: 6,
+    positionFixedSelector: '#article-toc',
+    scrollSmooth: true,
+  });
+  var tocList = document.getElementById('article-toc').getElementsByClassName('toc-list');
+  if (tocList && tocList.length > 0 && tocList[0].childNodes.length > 0) {
+    document.getElementById('article-toc').parentNode.classList.remove('hidden');
+  }
+</script>
+</body>
+
+</html>

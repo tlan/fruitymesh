@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -392,7 +410,7 @@ discovery of nearby nodes that also run FruityMesh.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">u8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>deviceType</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cf. <a href="#_device_types">Device Types</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cf. <a href="#deviceTypes">Device Types</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
@@ -481,11 +499,10 @@ discovery of nearby nodes that also run FruityMesh.</p>
 <h2 id="_connection_packets"><a class="anchor" href="#_connection_packets"></a>Connection Packets</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The mesh uses a number of packets that are sent
-over connections. Most packets that are sent over connections must have this header. There are some exceptions to this (e.g. split packets use a two byte message header for less overhead. The <em>messageType</em> is used to identify if the <em>connPacketHeader</em> is used or not.</p>
+<p>The mesh uses a number of packets that are sent over connections. Most packets that are sent over connections must have this header. There are some exceptions to this (e.g. split packets use a two byte message header for less overhead. The <em>messageType</em> is used to identify if the <em>connPacketHeader</em> is used or not.</p>
 </div>
 <div class="sect2">
-<h3 id="_connection_packet_header"><a class="anchor" href="#_connection_packet_header"></a>Connection Packet Header</h3>
+<h3 id="connPacketHeader"><a class="anchor" href="#connPacketHeader"></a>Connection Packet Header</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Format of a connPacketHeader</caption>
 <colgroup>
@@ -525,12 +542,12 @@ over connections. Most packets that are sent over connections must have this hea
 </table>
 </div>
 <div class="sect2">
-<h3 id="_module_connection_packet_header"><a class="anchor" href="#_module_connection_packet_header"></a>Module Connection Packet Header</h3>
+<h3 id="connPacketModule"><a class="anchor" href="#connPacketModule"></a>Module Connection Packet Header</h3>
 <div class="paragraph">
 <p>Modules use an extended message header to guarantee that there are no collisions between different functionality. This extended header is used for the following messageTypes:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Messages in extended package header</caption>
+<caption class="title">Table 3. Typical Message Types with extended package header</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 40%;">
@@ -583,9 +600,9 @@ over connections. Most packets that are sent over connections must have this hea
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketHeader</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#connPacketHeader">connPacketHeader</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>header</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The standard <em>connPacketHeader</em> used for all messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MessageType must be one e.g. of the above.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
@@ -644,19 +661,19 @@ over connections. Most packets that are sent over connections must have this hea
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1&#8230;&#8203;1999</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Uniquely address devices (nodes, sinks, &#8230;&#8203;)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uniquely address devices (nodes, sinks, &#8230;&#8203;) given by enrollment</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2000&#8230;&#8203;19999</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual addresses to address smartphones connected to the mesh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Virtual addresses to address smartphones connected to the mesh (dynamically assigned, aka. virtual partner id)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">20000&#8230;&#8203;20999</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Address groups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Address groups of devices (statically assigned at compile time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">30000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Address for the current node itself</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Address for the current node itself (similar to localhost)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">30001&#8230;&#8203;30999</p></td>
@@ -664,12 +681,15 @@ over connections. Most packets that are sent over connections must have this hea
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">31000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Have a packet travel to the shortest sink
-possible (not yet implemented)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to send a packet to all sink nodes (see <a href="#deviceTypes">Device Types</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NodeId given to non-mesh devices that can connect via a MeshAccessConnection (e.g. a Smartphone). This is replaced by a virtual partner id during communication.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">33000&#8230;&#8203;39999</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Assign nodeIds uniquely over multiple meshes for the same organization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assign nodeIds uniquely over multiple meshes for the same organization (used for assets that roam between different networks)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">65535</p></td>
@@ -684,17 +704,34 @@ possible (not yet implemented)</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_serial_numbers_serialnumberindex"><a class="anchor" href="#_serial_numbers_serialnumberindex"></a>Serial Numbers / SerialNumberIndex</h2>
+<h2 id="SerialNumbers"><a class="anchor" href="#SerialNumbers"></a>Serial Numbers / SerialNumberIndex</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The serial numbers are assigned
-randomly using the <em>chipId</em> when developing with the open source variant.
-They should however be uniquely assigned using the UICR once devices go
-into production. Contact M-Way Solutions GmbH before using serial numbers in production
-with the M-Way Solutions GmbH manufacturing ID. The serialNumberIndex is a 32 bit
-unsigned integer that can be uniquely mapped from and to a serial number
-using the <em>GenerateBeaconSerialForIndex</em> and <em>GetIndexForSerial</em> methods in
-the <em>Utility</em> class.</p>
+<p>The serial numbers use a special alphabet of ASCII characters that is easily readable (<code>BCDFGHJKLMNPQRSTVWXYZ123456789</code>) and will not result in funny words because it does not contain vocals. Serial numbers are either 5 or 7 characters long. Each serial number can be converted to a serialNumberIndex which is represented as an unsigned 32 bit integer. If a serial number is human readable, it can be printed in its ASCII representation, but if sending a serialNumber over the network or using it in code, the serialNumberIndex should be used. Check out the appropriate methods (<em>GenerateBeaconSerialForIndex</em> and <em>GetIndexForSerial</em>) in the <em>Utility</em> class on how to convert the serial number. Also see the appropriate tests in the <em>TestUtility</em> class.</p>
+</div>
+<div class="paragraph">
+<p>There are two types of serial number ranges. There is a range of two billion serial numbers that is exclusively managed by M-Way Solutions. This range contains serial numbers with 5 characters and also serial numbers with 7 characters. Parts of this range are licensed to partners. The second range can be used for projects working with the open source version of FruityMesh completely free of charge. This is always a 7 character serial number.</p>
+</div>
+<div class="sect2">
+<h3 id="_m_way_solutions_proprietary_serial_number_range"><a class="anchor" href="#_m_way_solutions_proprietary_serial_number_range"></a>M-Way Solutions Proprietary Serial Number Range</h3>
+<div class="paragraph">
+<p>The serialNumberIndex of this range starts with 0 for the serial number <code>BBBBB</code> and increments up to <code>0x7FFFFFFF</code> for the serial number <code>D8PJQ8K</code>. This range should not be used without consulting us beforehand because serial numbers will clash otherwise. We assign sub-ranges to our partners which allows them to use serial numbers with 5 characters.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_open_source_testing_range"><a class="anchor" href="#_open_source_testing_range"></a>Open Source Testing Range</h3>
+<div class="paragraph">
+<p>To provide beginners with an easy method for testing FruityMesh, we decided to open source a part of our proprietary range that contains nicely readable serial numbers. This range starts from <code>2673000</code> (<code>FMBBB</code>) and ranges until <code>2699999</code> (<code>FM999</code>).By default, the serial number is generated randomly (from the unique deviceId stored in the chipset) within this testing range if there is no UICR data available (see <em>generateRandomSerialAndNodeId</em> in the Config class). This makes it easier to start testing FruityMesh. You should not distribute products that use a serial number from this range as it will clash with others.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_open_source_serial_number_range_for_products"><a class="anchor" href="#_open_source_serial_number_range_for_products"></a>Open Source Serial Number Range for Products</h3>
+<div class="paragraph">
+<p>The open sourced serial number range that you can use for final products uses serial numbers with 7 characters to avoid a clash between different vendors. A serial number is constructed by setting the most significant bit of the serialNumberIndex to 1. The next 16 bits must be set to a <a href="https://www.bluetooth.com/specifications/assigned-numbers/company-identifiers/">two byte company identifier assigned by the Bluetooth SIG</a>. The remaining 15 bits are used to generate the individual serial numbers for this vendorId. This gives each vendor the possibility to generate around 32 thousand unique serial numbers. (See <em>VendorSerial</em> type).</p>
+</div>
+<div class="paragraph">
+<p>If you do not have a Bluetooth SIG company identifier yet, you can use the manufacturer id from M-Way Solutions (<code>0x024D</code>). This range starts from <code>0x81268000</code> (<code>D9HCK3N</code>) and ranges until <code>0x8126FFFF</code> (<code>D9HDSHW</code>). You should not publicly distribute products that use this serial number range as it could clash with other serial numbers. If you want to distribute a product, you should register with the Bluetooth SIG to get a free company identifier that you can set as the MANUFACTURER_ID in the configuration.</p>
+</div>
 </div>
 </div>
 </div>
@@ -819,13 +856,13 @@ used.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_device_types"><a class="anchor" href="#_device_types"></a>Device Types</h2>
+<h2 id="deviceTypes"><a class="anchor" href="#deviceTypes"></a>Device Types</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>There are different device types that are given to nodes with specific functionality:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. List of device types</caption>
+<caption class="title">Table 7. List of Device Types</caption>
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 28.5714%;">
@@ -876,6 +913,9 @@ needs a constant data connection)</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>For more explanation, see <a href="Concepts.html#deviceTypes" class="page">Device Types</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -931,7 +971,7 @@ persistent across reboots as it is generated according to the internal chip id f
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SERIAL_NUMBER</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The given serial number as ASCII (zero terminated)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated: This contained the given serial number as ASCII (zero terminated) but is not used anymore (since 12.05.2020). Must now be set to FFFF&#8230;&#8203;.FFFF. The serial number is instead calculated from the SERIAL_NUMBER_INDEX</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
@@ -951,21 +991,19 @@ company identifiers</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DEFAULT_NETWORK_ID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0: unenrolled<br>
-1: using an enrollment network<br>
-other: default enrollment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0: unenrolled; 1: using an enrollment network; other: default enrollment</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">40</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DEFAULT_NODE_ID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Node ID to be used if not enrolled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node ID to be used while not enrolled</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">44</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DEVICE_TYPE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type of device according to <a href="#_device_types">Device Types</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of device according to <a href="#deviceTypes">Device Types</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">48</p></td>
@@ -977,7 +1015,7 @@ other: default enrollment</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NETWORK_KEY</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default network key if preenrollment is used</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default network key if pre-enrollment is used</p></td>
 </tr>
 </tbody>
 </table>

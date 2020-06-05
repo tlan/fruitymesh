@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -237,7 +255,7 @@
 <h2 id="_can_i_use_fruitymesh_with_chipset_xxxx"><a class="anchor" href="#_can_i_use_fruitymesh_with_chipset_xxxx"></a>Can I use FruityMesh with chipset XXXX?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The answer is: Not easily. FruityMesh has been developed on the Nordic nRF Series. This includes the nRF51422, nRF51822, nRF52832 and nRF52840. It needs the S130 SoftDevice (Supported on IC revision &gt;= 3), S132 or S140, which provides a Bluetooth Low Energy stack that supports concurrent operations as Peripheral/Central/Advertiser and Observer. Connection and disconnection are managed by the FruityMesh algorithm but having concurrent operations is the key to this technology because it consumes less power than advertising and scanning.</p>
+<p>The answer is: Not easily. FruityMesh has been developed on the Nordic nRF Series. This includes the nRF52832 and nRF52840. It needs the S132 or S140 Softdevice, which provides a Bluetooth Low Energy stack that supports concurrent operations as Peripheral/Central/Advertiser and Observer. Connection and disconnection are managed by the FruityMesh algorithm but having concurrent operations is the key to this technology because it consumes less power than advertising and scanning.</p>
 </div>
 <div class="paragraph">
 <p>A lot of the nRF specific functionality has already been extracted into a hardware abstraction layer (FruityHal) but more work is necessary to fully decouple the implementation from the underlying stack. Implementing FruityMesh for a different chipset might be little or a lot of work depending on the capabilities and manner of operation of the other chip.</p>

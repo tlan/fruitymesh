@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -266,6 +284,9 @@
 <div class="sectionbody">
 <div class="ulist">
 <ul>
+<li>
+<p>Mesh simulation and fast development using <a href="#CherrySim">CherrySim</a></p>
+</li>
 <li>
 <p>UART Terminal to execute commands with a list of arguments for manual or automated communication with a MeshGateway (cf. <a href="BasicUsage.html" class="page">Basic Usage</a>)</p>
 </li>
@@ -387,25 +408,6 @@
 <div class="ulist">
 <ul>
 <li>
-<p>CherrySim</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Compilation of FruityMesh for x86 together with a simulator that abstracts the hardware and can simulate hundreds of nodes at the same time.</p>
-</li>
-<li>
-<p>Integrated testing suite to write tests against a mesh of multiple nodes that can all run with different featuresets.</p>
-</li>
-<li>
-<p>Provides the ability to Mock 3rd Party hardware.</p>
-</li>
-<li>
-<p><span class="image"><img src="_images/cherrysim.png" alt="cherrysim"></span></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
 <p>Flow Control &amp; Quality of Service (QoS)</p>
 <div class="ulist">
 <ul>
@@ -422,6 +424,28 @@
 <div class="sect1">
 <h2 id="_features_in_detail"><a class="anchor" href="#_features_in_detail"></a>Features in Detail</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="CherrySim"><a class="anchor" href="#CherrySim"></a>CherrySim</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Compilation of FruityMesh for x86 together with a simulator that abstracts the hardware and can simulate hundreds of nodes at the same time.</p>
+</li>
+<li>
+<p>Integrated testing suite to write tests against a mesh of multiple nodes that can all run with different featuresets.</p>
+</li>
+<li>
+<p>Provides the ability to Mock 3rd Party hardware.</p>
+</li>
+<li>
+<p>Find the simulator documentation on the <a href="CherrySim.html" class="page">CherrySim</a> page.</p>
+</li>
+<li>
+<p><span class="image"><img src="_images/cherrysim.png" alt="cherrysim"></span></p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_time_synchronisation"><a class="anchor" href="#_time_synchronisation"></a>Time Synchronisation</h3>
 <div class="paragraph">

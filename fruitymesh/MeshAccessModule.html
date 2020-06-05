@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -612,7 +630,7 @@ action this ma connect 00:11:22:33:44:55 1 11:22:33:44:11:22:33:44:11:22:33:44:1
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">//Establish a connection to another device using a MeshAccessConnection
-action [nodeId] ma serial_connect [serial number] [keyId] [key] {nodeId_of_partner_after_connect = 0} {initial_keep_alive = 0} {requestHandle=0}
+action [nodeId] ma serial_connect [serial number] [keyId] [key] [nodeId_of_partner_after_connect] [initial_keep_alive] {requestHandle=0}
 
 //E.g. Connect to device BBBBQ with node key 00:11:22:...
 action 6 ma serial_connect BBBBQ 1 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF 33012 20 13</code></pre>
@@ -622,10 +640,10 @@ action 6 ma serial_connect BBBBQ 1 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:
 <p>The key can be set to FF:FF:&#8230;&#8203;:FF in which case the receiving node replaces the key with the key of the corresponding keyId from its local storage. <strong>NOTE</strong>: This key replacement feature is not allowed for MeshAccessConnections as they are not fully trusted members of the mesh. For such connections, the key must be fully specified.</p>
 </div>
 <div class="paragraph">
-<p>If no <code>nodeId_of_partner_after_connect</code> is given or it is set to 0, a virtual partner id is assigned to the connection. If it is given, the nodeId must come of the range of organization wide unique nodeIds.</p>
+<p><code>nodeId_of_partner_after_connect</code> must be inside the range of organization wide unique nodeIds [33000, 39999].</p>
 </div>
 <div class="paragraph">
-<p>If no <code>initial_keep_alive</code> is given or it is set to 0, the connection will stay open indefinitely. <strong>NOTE</strong> This variable is merely a suggestion to the node. There are a lot of cases where a connection can also be prematurely disconnected.</p>
+<p><code>initial_keep_alive</code> is merely a suggestion to the node. There are a lot of cases where a connection can also be prematurely disconnected.</p>
 </div>
 <div class="paragraph">
 <p>Once the connection was established or cancelled, it is answered with the following JSON:</p>

@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -197,6 +212,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
 </ul>
   </li>
 </ul>
@@ -225,25 +243,28 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>FruityMesh was built with Eclipse and GCC and is mainly written in C, with some small C11 bits. Setting up the development environment has become pretty straightforward.</p>
+<p>FruityMesh can be built using GCC and is mainly written in C, with some small C11 bits. Setting up the development environment has become pretty straightforward.</p>
 </div>
 <div class="paragraph">
-<p>You have two possibilities:</p>
+<p>You have three possibilities:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Flashing the precompiled firmware">Flashing the precompiled firmware</a> will take you about <strong>5 minutes</strong>.</p>
+<p><a href="#Precompiled">Flashing the precompiled firmware</a> will take you about <strong>5 minutes</strong>.</p>
 </li>
 <li>
-<p>If you want to compile it yourself you need to <a href="#_setup_eclipse_compile_fruitymesh">Setup Eclipse &amp; Compile FruityMesh</a>. This will take you a few more minutes until everything is ready to go.</p>
+<p>If you want to <strong>compile it yourself</strong> you need to <a href="#Toolchain">setup the Toolchain with VsCode &amp; Compile FruityMesh</a>. This will take you a few more minutes until everything is ready to go.</p>
+</li>
+<li>
+<p>We also offer a <strong>simulator</strong> that allows you to do a lot of the development work on your computer instead of on the hardware itself. You can set up mesh networks of hundreds of nodes at the same time while being able to control and debug them all. Take a look at <a href="CherrySim.html" class="page">CherrySim</a> for building and usage instructions.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_flashing_precompiled_firmware"><a class="anchor" href="#_flashing_precompiled_firmware"></a>Flashing Precompiled Firmware</h2>
+<h2 id="Precompiled"><a class="anchor" href="#Precompiled"></a>Flashing Precompiled Firmware</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The precompiled firmware can be flashed in three easy steps.</p>
@@ -254,7 +275,7 @@
 <p>The nRF Command Line Tools are handy for flashing the compiled firmware on a device. You can download them here for the operating system of your choice and install them:</p>
 </div>
 <div class="paragraph">
-<p><a href="https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF5-Command-Line-Tools" class="bare">https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF5-Command-Line-Tools</a></p>
+<p><a href="https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Command-Line-Tools" class="bare">https://www.nordicsemi.com/Software-and-tools/Development-Tools/nRF-Command-Line-Tools</a></p>
 </div>
 <div class="paragraph">
 <p>The tools come with a bundled installation of the Segger Utilities, which are necessary for flashing and debugging nRF Hardware.</p>
@@ -286,23 +307,23 @@
 <div class="sect2">
 <h3 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h3>
 <div class="paragraph">
-<p>You&#8217;re now ready to test FruityMesh. Continue by reading the <a href="#_get_started">Get Started</a> section.</p>
+<p>You&#8217;re now ready to test FruityMesh. Continue by reading the <a href="#GetStarted">Get Started</a> section.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setup_eclipse_compile_fruitymesh"><a class="anchor" href="#_setup_eclipse_compile_fruitymesh"></a>Setup Eclipse &amp; Compile FruityMesh</h2>
+<h2 id="Toolchain"><a class="anchor" href="#Toolchain"></a>Compile FruityMesh</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>FruityMesh is built using the GCC compiler toolchain together with GNU make. The installation process varies a little for each operating system.</p>
+<p>FruityMesh is built using the GCC compiler toolchain together with CMake and GNU make. The installation process varies a little for each operating system.</p>
 </div>
 <div class="sect2">
 <h3 id="_installing_the_toolchain"><a class="anchor" href="#_installing_the_toolchain"></a>Installing the Toolchain</h3>
 <div class="sect3">
 <h4 id="_gnu_arm_embedded_toolchain"><a class="anchor" href="#_gnu_arm_embedded_toolchain"></a>GNU ARM Embedded Toolchain</h4>
 <div class="paragraph">
-<p>Download Version 4.9 of the GNU ARM Embedded Toolchain for Windows. This includes the compiler gcc, linker, and multiple utilities like objcopy, addr2line and gdb - the GNU debugger:</p>
+<p>Download Version 4.9 of the GNU ARM Embedded Toolchain. This includes the compiler gcc, linker, and multiple utilities like objcopy, addr2line and gdb - the GNU debugger:</p>
 </div>
 <div class="paragraph">
 <p><a href="https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update/" class="bare">https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update/</a></p>
@@ -359,13 +380,110 @@ Do not choose a newer version, as this might fail to compile.
 <p>Finally, you should add the bin folders of the gnu buildtools and the <code>bin</code> folder of <code>gcc-arm-embedded</code> to your PATH variable under System Environment. This will make sure that you can access these tools from anywhere.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_project_configuration"><a class="anchor" href="#_project_configuration"></a>Project Configuration</h4>
+</div>
+<div class="sect2">
+<h3 id="_building_fruitymesh"><a class="anchor" href="#_building_fruitymesh"></a>Building FruityMesh</h3>
 <div class="paragraph">
-<p>Create a new sibling directory next to FruityMesh and navigate your Command Line in this newly created directory. Execute the following command within that directory:</p>
+<p>Now, you have a few options on how to build FruityMesh. We recommend using VsCode for building and coding with FruityMesh as it has a really nice CMake integration and can be set up in a short time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_option_1_using_vscode"><a class="anchor" href="#_option_1_using_vscode"></a>Option 1: Using VsCode</h3>
+<div class="paragraph">
+<p>If you do not have VsCode installed, get it for your platform from:</p>
 </div>
 <div class="paragraph">
-<p><code>cmake ../fruitymesh -DBUILD_FEATURESETS=ON -DGCC_PATH="C:/path/to/gcc-arm-none-eabi-4_9" -G "Unix Makefiles"</code></p>
+<p><a href="https://code.visualstudio.com/" class="bare">https://code.visualstudio.com/</a></p>
+</div>
+<div class="paragraph">
+<p>Next, you must install some extensions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CMake Tools: <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools" class="bare">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools</a></p>
+</li>
+<li>
+<p>C/C++ Tools: <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools" class="bare">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_configure_the_project"><a class="anchor" href="#_configure_the_project"></a>Configure the Project</h4>
+<div class="paragraph">
+<p>In order to configure the project, you should create the file <code>&lt;fruitymesh&gt;/.vscode/settings.json</code>. Create the folder if it does not yet exist and make sure to replace the path with the correct path that points to your GCC installation. (In case of problems see <a href="VsCodeSetup.html#Troubleshooting" class="page">Troubleshooting</a>)</p>
+</div>
+<div class="listingblock">
+<div class="title">settings.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">{
+    "cmake.configureSettings":{
+        "GCC_PATH":"C:/&lt;your_path&gt;/gcc-arm-embedded-4.9-2015q3",
+        "BUILD_FEATURESETS":"ON"
+    },
+    "cmake.buildDirectory": "${workspaceFolder}/_build/vscode/",
+    "cmake.configureOnOpen": true,
+    "cmake.generator":"Unix Makefiles"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, if not already opened, you should open VsCode and use <code>File &#8658; Open Folder</code> to open the FruityMesh project folder. This should look similar to the following screenshot, with the <code>.vscode</code> folder as part of the repository.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/vscode_project.png" alt="vscode project"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If there are popups that ask you to allow Intellisense to be configured or if you want to use the compiler_commands.json file for configuring IntelliSense, click yes to have better indexing and code navigation support. This is mentioned up front as these popups might disappear fast. Don&#8217;t worry, they will pop up again at some time.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>First, you have to select the Kit by clicking on "No Kit Selected" in the bottom bar of VsCode. You need to choose the installed GCC ARM Embedded 4.9 toolchain.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/vscode_kit.png" alt="kit selection"></span></p>
+</div>
+<div class="paragraph">
+<p>Next, switch to the CMake Panel on the left side and click "Configure".</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/vscode_cmake.png" alt="cmake panel"></span></p>
+</div>
+<div class="paragraph">
+<p>This should automatically trigger the CMake configuration and load all available featuresets</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/vscode_featuresets.png" alt="featuresets"></span></p>
+</div>
+<div class="paragraph">
+<p>You are now able to build the binary targets by clicking on the build button next to the featureset. There are also a number of Utility targets. If you right click a Utility target and choose "Run Utility", it will first build the target and then flash the application and SoftDevice on any attached development board.</p>
+</div>
+<div class="paragraph">
+<p>For more information about VsCode, how to setup Debugging or for some Troubleshooting, make sure to also read the <a href="VsCodeSetup.html" class="page">VsCode Setup</a> page.</p>
+</div>
+<div class="paragraph">
+<p>You can now continue with the <a href="#GetStarted">Get Started</a> section.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_option_2_manual_cmake_project_configuration"><a class="anchor" href="#_option_2_manual_cmake_project_configuration"></a>Option 2: Manual CMake Project Configuration</h3>
+<div class="paragraph">
+<p>If you want to build FruityMesh on the command line, use the following instructions. Further explanation can be found under <a href="#BuildingWithCmake.adoc" class="page unresolved">Building With CMake</a></p>
+</div>
+<div class="paragraph">
+<p>Open a commandline in <code>&lt;fruitymesh&gt;/_build/commandline</code> and execute the following command within that directory. Make sure to replace the path to GCC to fit your installation (use forward slashes "<strong>/</strong>"):</p>
+</div>
+<div class="paragraph">
+<p><code>cmake "../../" -DBUILD_FEATURESETS=ON -DGCC_PATH="C:/&lt;yourpath&gt;/gcc-arm-none-eabi-4_9" -G "Unix Makefiles"</code></p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -374,22 +492,19 @@ Do not choose a newer version, as this might fail to compile.
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-The GCC_PATH must be specified using forward slashes ("/"), not backward slashes ("\").
+The GCC_PATH must be specified using forward slashes "<strong>/</strong>", not backward slashes "<strong>\</strong>", otherwhise cmake will complain about <code>Invalid character escape '\m'</code>. You have to delete all files in your build directory before executing the command again to solve the issue! In case of other errors, make sure to have a look at <a href="#BuildingWithCmake.adoc#Troubleshooting" class="page unresolved">Building With CMake</a>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Replace the GCC_PATH according to the location where you installed GCC 4.9. This will generate a Makefile which is possible to be used for building.</p>
-</div>
-<div class="paragraph">
-<p>You could directly interact with the Makefile, but the preferred way is to use CMake for this step as well:</p>
+<p>Next, from the same directory, execute the following command:</p>
 </div>
 <div class="paragraph">
 <p><code>cmake --build . --target github_nrf52</code></p>
 </div>
 <div class="paragraph">
-<p>For the target, any other <a href="Features.html" class="page">Featureset</a> may be used as well.</p>
+<p>Any other <a href="Developers.html#Featuresets" class="page">Featureset</a> may be used as well as a target.</p>
 </div>
 <div class="paragraph">
 <p>If you installed the nRF Command Line Tools and properly configured the <code>PATH</code>, you can now type:</p>
@@ -400,7 +515,7 @@ The GCC_PATH must be specified using forward slashes ("/"), not backward slashes
 </div>
 </div>
 <div class="paragraph">
-<p>to flash the firmware on a device. This also works with any other <a href="Features.html" class="page">Featureset</a> by appending "_flash" to the name.</p>
+<p>to flash the firmware on a device. This also works with any other <a href="Developers.html#Featuresets" class="page">Featureset</a> by appending "_flash" to the name.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -414,36 +529,40 @@ The safest and most straight forward setup for flashing is to only have a single
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>You can now continue with the <a href="#GetStarted">Get Started</a> section.</p>
 </div>
 <div class="sect3">
-<h4 id="_using_eclipse_for_development"><a class="anchor" href="#_using_eclipse_for_development"></a>Using Eclipse For Development</h4>
+<h4 id="_option_3_using_eclipse_for_development_not_recommended"><a class="anchor" href="#_option_3_using_eclipse_for_development_not_recommended"></a>Option 3: Using Eclipse For Development (Not recommended)</h4>
 <div class="paragraph">
 <p><span class="image"><img src="_images/eclipsescreen.png" alt="eclipsescreenshot"></span></p>
 </div>
 <div class="paragraph">
-<p>Eclipse is a good development IDE for FruityMesh. To generate the project settings, execute the following command in a sibling directory:</p>
+<p>Eclipse is a good development IDE but its CMake integration is a bit outdated. The following setup will work, but you might experience issues with the code indexer. You should create a directory next to the fruitymesh directory, that you can call e.g. <code>fruitymesh_eclipse</code>. This is necessary as eclipse will otherwise not properly display the sourcecode directory in the project.</p>
 </div>
 <div class="paragraph">
-<p><code>cmake ../fruitymesh -DBUILD_FEATURESETS=ON -DGCC_PATH="C:/path/to/gcc-arm-none-eabi-4_9" -G "Eclipse CDT4 - Unix Makefiles"</code></p>
+<p>To generate the project settings, open a commandline in the <code>fruitymesh_eclipse</code> folder and execute:</p>
 </div>
 <div class="paragraph">
-<p>After starting Eclipse, all you have to do is to import the FruityMesh project. You can then develop, flash and debug in a comfortable way.</p>
+<p><code>cmake ../fruitymesh -DBUILD_FEATURESETS=ON -DGCC_PATH="C:/&lt;yourpath&gt;/gcc-arm-none-eabi-4_9" -G "Eclipse CDT4 - Unix Makefiles"</code></p>
+</div>
+<div class="paragraph">
+<p>After starting Eclipse, all you have to do is to import the generated FruityMesh project. You can then develop, flash and debug in a comfortable way.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_get_started"><a class="anchor" href="#_get_started"></a>Get Started</h2>
+<h2 id="GetStarted"><a class="anchor" href="#GetStarted"></a>Get Started</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now, let&#8217;s see how we can use FruityMesh. The preconmpiled firmware and the standard project settings are configured so that all devices immediately connect to each other. Start by plugging in your first develoipment kit.</p>
+<p>Now, let&#8217;s see how we can use FruityMesh. The precompiled firmware and the standard project settings are configured so that all devices immediately connect to each other. Start by plugging in your first development kit.</p>
 </div>
 <div class="sect2">
 <h3 id="_open_serial_terminal_connect"><a class="anchor" href="#_open_serial_terminal_connect"></a>Open Serial Terminal &amp; Connect</h3>
 <div class="paragraph">
-<p>(On Windows,
-<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> is the best tool. The screen utility can be used on macOS or Linux.) You have to connect to UART using the following settings:</p>
+<p>FruityMesh offers a <a href="Terminal.html" class="page">Terminal</a> to interact with the firmware. On Windows, <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> is the best tool for this job. The screen utility can be used on macOS or Linux. You have to connect to UART using the following settings:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -490,6 +609,18 @@ OSX users: To find out which serial port to open, you can list all devices under
 </td>
 <td class="content">
 On Windows you can find the correct COM port to connect to by opening the device manager and then under (COM &amp; LPT) you should see a JLink entry with the COM number at the end (e.g. COM3). All the serial settings can be found in PuTTY under Connection/Serial.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can also use the Segger RTT viewer to connect to the terminal of the node. Just open the viewer and select the correct settings while the debugger is connected to your computer.
 </td>
 </tr>
 </table>

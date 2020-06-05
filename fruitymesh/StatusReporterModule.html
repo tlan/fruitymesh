@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -338,167 +356,36 @@ action 0 status livereports 50</code></pre>
 <h2 id="_messages"><a class="anchor" href="#_messages"></a>Messages</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_device_info"><a class="anchor" href="#_device_info"></a>Device Info</h3>
+<h3 id="_device_info_v2"><a class="anchor" href="#_device_info_v2"></a>Device Info (v2)</h3>
 <div class="sect3">
 <h4 id="_request"><a class="anchor" href="#_request"></a>Request</h4>
-<div class="paragraph">
-<p>actionType: <code>GET_DEVICE_INFO</code></p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Bytes</th>
 <th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">header</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_TRIGGER_ACTION(51), <strong>actionType:</strong> GET_DEVICE_INFO_V2(10)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="_response"><a class="anchor" href="#_response"></a>Response</h4>
-<div class="paragraph">
-<p>actionType: <code>DEVICE_INFO</code></p>
-</div>
-<div class="paragraph">
-<p>The device info contains device information that is not changing often, e.g. only after a firmware update or an enrollment.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 12.5%;">
-<col style="width: 25%;">
-<col style="width: 62.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Bytes</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">manufacturerId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ID according to Bluetooth SIG Assigned numbers
-company identifiers</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">serialNumber</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Serial number as ASCII without terminating 0 character</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">chipId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A unique ID of the nRF chip</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">gapAddress</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 byte address type, 6 byte BLE address</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">networkid</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The network ID</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nodeVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Version of the node<br>
-(10000000 * MAJOR + 10000 * MINOR + PATCH)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dbmRx</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Receive power in dBm (signed)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dbmTx</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Transmit power in dBm (signed)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">deviceType</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">cf. <a href="Specification.html#_Device_Types" class="page">Device Types</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">calibratedTx</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Calibrated TX power at 1m distance (signed)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">chipGroupId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Group ID for the chip (e.g. NRF51 or NRF52)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">featuresetGroupId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Group ID for the firmware feature set (used for
-firmware update). Matching groups are allowed to receive the firmware.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bootloaderVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Version of the bootloader</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_device_info_2"><a class="anchor" href="#_device_info_2"></a>Device Info</h3>
-<div class="sect3">
-<h4 id="_request_2"><a class="anchor" href="#_request_2"></a>Request</h4>
-<div class="paragraph">
-<p>actionType: GET_DEVICE_INFO_V2</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 12.5%;">
-<col style="width: 25%;">
-<col style="width: 62.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Bytes</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_response_2"><a class="anchor" href="#_response_2"></a>Response</h4>
-<div class="paragraph">
-<p>actionType: <code>DEVICE_INFO_V2</code></p>
-</div>
 <div class="paragraph">
 <p>The device info contains information about the device that is not
 changing often, e.g. only after a firmware update or an enrollment.</p>
@@ -521,9 +408,9 @@ changing often, e.g. only after a firmware update or an enrollment.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">header</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_ACTION_RESPONSE(52), <strong>actionType:</strong> DEVICE_INFO_V2(10)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
@@ -592,7 +479,7 @@ MINOR + PATCH)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">u16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">chipGroupId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Group ID for the chip (e.g. NRF51 or NRF52)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Group ID for the chip (e.g. NRF52)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
@@ -614,10 +501,7 @@ for firmware update). Matching groups are allowed to receive the firmware.</p></
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>Status</h3>
 <div class="sect3">
-<h4 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h4>
-<div class="paragraph">
-<p>actionType: <code>GET_STATUS</code></p>
-</div>
+<h4 id="_request_2"><a class="anchor" href="#_request_2"></a>Request</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -634,17 +518,16 @@ for firmware update). Matching groups are allowed to receive the firmware.</p></
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_TRIGGER_ACTION(51), <strong>actionType:</strong> GET_STATUS(1)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_response_actiontype_status"><a class="anchor" href="#_response_actiontype_status"></a>Response actionType: STATUS</h4>
+<h4 id="_response_2"><a class="anchor" href="#_response_2"></a>Response</h4>
 <div class="paragraph">
-<p>The device status contains information that is changing from time to
-time.</p>
+<p>The device status contains information that is changing from time to time.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -662,8 +545,8 @@ time.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_ACTION_RESPONSE(52), <strong>actionType:</strong> STATUS(1)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
@@ -717,15 +600,10 @@ time.</p>
 <div class="sect2">
 <h3 id="_connections"><a class="anchor" href="#_connections"></a>Connections</h3>
 <div class="paragraph">
-<p>Query all nodeIDs that a node is connected to including
-the connection rssi. The first entry is the incoming connection, the
-others are outgoing.</p>
+<p>Query all nodeIDs that a node is connected to including the connection rssi. The first entry is the incoming connection, the others are outgoing.</p>
 </div>
 <div class="sect3">
-<h4 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h4>
-<div class="paragraph">
-<p>actionType: <code>GET_ALL_CONNECTIONS</code></p>
-</div>
+<h4 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 14.2857%;">
@@ -742,21 +620,14 @@ others are outgoing.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_TRIGGER_ACTION(51), <strong>actionType:</strong> GET_ALL_CONNECTIONS(3)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="_response_3"><a class="anchor" href="#_response_3"></a>Response</h4>
-<div class="paragraph">
-<p>actionType: <code>ALL_CONNECTIONS</code></p>
-</div>
-<div class="paragraph">
-<p>The device status contains information that is changing from time to
-time.</p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 14.2857%;">
@@ -773,8 +644,8 @@ time.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_ACTION_RESPONSE(52), <strong>actionType:</strong> ALL_CONNECTIONS(3)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3*x</p></td>
@@ -817,14 +688,10 @@ time.</p>
 <div class="sect2">
 <h3 id="_nearby_nodes"><a class="anchor" href="#_nearby_nodes"></a>Nearby Nodes</h3>
 <div class="paragraph">
-<p>Returns all nodes (limited to some maximum count) that
-are surrounding the node with the same networkid.</p>
+<p>Returns all nodes (limited to some maximum count) that are surrounding the node with the same networkId.</p>
 </div>
 <div class="sect3">
-<h4 id="_request_5"><a class="anchor" href="#_request_5"></a>Request</h4>
-<div class="paragraph">
-<p>actionType: <code>GET_NEARBY_NODES</code></p>
-</div>
+<h4 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 14.2857%;">
@@ -841,17 +708,14 @@ are surrounding the node with the same networkid.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_TRIGGER_ACTION(51), <strong>actionType:</strong> GET_NEARBY_NODES(4)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
 <h4 id="_response_4"><a class="anchor" href="#_response_4"></a>Response</h4>
-<div class="paragraph">
-<p>actionType: <code>NEARBY_NODES</code></p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 14.2857%;">
@@ -868,8 +732,8 @@ are surrounding the node with the same networkid.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_ACTION_RESPONSE(52), <strong>actionType:</strong> NEARBY_NODES(4)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3*x</p></td>
@@ -945,9 +809,6 @@ to the disconnected part of the mesh using a <em>MeshAccessConnection</em>.</p>
 </div>
 <div class="sect3">
 <h4 id="_event"><a class="anchor" href="#_event"></a>Event</h4>
-<div class="paragraph">
-<p>actionType: <code>LIVE_REPORT</code></p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 14.2857%;">
@@ -964,8 +825,8 @@ to the disconnected part of the mesh using a <em>MeshAccessConnection</em>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">connPacketModule</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MESSAGE_TYPE_MODULE_GENERAL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="Specification.html#connPacketModule" class="page">connPacketModule</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>messageType:</strong> MODULE_GENERAL(53), <strong>actionType:</strong> LIVE_REPORT(1)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>

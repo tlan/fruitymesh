@@ -73,10 +73,16 @@
     <a class="nav-link" href="Debugging.html">Debugging</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="DocumentationTemplate.html">Documentation Template</a>
+    <a class="nav-link" href="ModuleDocumentationTemplate.html">Module Documentation Template</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="BuildingWithCMake.html">Building with CMake</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="VsCodeSetup.html">VsCode Setup</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="CppCheck.html">CppCheck Setup</a>
       </li>
 </ul>
   </li>
@@ -89,6 +95,39 @@
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Connections.html">Connections</a>
+      </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Core Functionality</span>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="BoardConfig.html">Board Configuration</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="FruityHal.html">FruityHal</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Logger.html">Logger</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RawData.html">RawData Protocol</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ScanController.html">ScanController</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+      </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Terminal.html">Terminal</a>
       </li>
 </ul>
   </li>
@@ -130,31 +169,7 @@
     <span class="nav-text">Simulator</span>
     <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Simulator.html">Old Simulator</a>
-      </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="CherrySim.html">CherrySim</a>
-      </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Other Classes</span>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="AdvertisingController.html">AdvertisingController</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="FruityHal.html">FruityHal</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="Logger.html">Logger</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="RecordStorage.html">Record Storage</a>
-      </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
 </ul>
   </li>
@@ -194,6 +209,9 @@
       </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">FAQ</a>
+      </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="FAQ.html">FAQ</a>
       </li>
@@ -240,7 +258,7 @@
 <p>FruityMesh is based on the Bluetooth low energy part of the Bluetooth 4.1 Specification and is built on top of the host layer. On-air, FruityMesh physical representation is compatible with existing Bluetooth low energy devices as mesh messages are contained inside the payload of Bluetooth low energy connection packets. FruityMesh adds logic on top of the Bluetooth low energy host layer to automatically build connections with other mesh devices within the same mesh network. As it is implemented on top of the host, just as any normal BLE application would be, it is highly portable between chipsets and fully compatible with other Bluetooth Low Energy devices.</p>
 </div>
 <div class="paragraph">
-<p>In contrast to the SIG mesh, there is no use-case specific node configuration necessary. There is no concept of relay nodes, friend nodes or proxy nodes as each Node can do this decision based on the FruityMesh Algorithm at Runtime. There is however a concept of a Gateway (Sink) and Asset Nodes (movable nodes with very little battery capacity). Leaf nodes (aka. friend nodes) can be used for very specific use-cases.</p>
+<p>In contrast to the SIG mesh, there is no use-case specific node configuration necessary. There is no concept of relay nodes, friend nodes or proxy nodes as each Node can do this decision based on the FruityMesh Algorithm at Runtime. There is however a concept of a Gateway (Sink) and Asset Nodes (movable nodes with very little battery capacity). Also, leaf nodes (aka. friend nodes) can be used for very specific use-cases. See <a href="#deviceTypes">Device Types</a> for more explanation.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/fruitymesh.png" alt="FruityMesh"></span></p>
@@ -307,6 +325,23 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Each FruityMesh node will allow standard BLE connections if it has free resources. This means, that any legacy Bluetooth Low Energy device has the possibility to connect to the mesh by either using the MeshAccess connection protocol or by implementing a custom connection type. This is similar to the SIG mesh GATT proxy, but doesn&#8217;t interfere with the mesh in a similar manner as it can be scheduled much better together with mesh activity. The MeshAccessConnections provide security and can be used with a number of different keys. More information about connecting to a mesh network can be found in the documentation of the <a href="MeshAccessModule.html" class="page">MeshAccessModule</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deviceTypes"><a class="anchor" href="#deviceTypes"></a>Device Types (aka. Node Types)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>FruityMesh supports a number of different device types for different use cases. Most of the time, the default <code>STATIC</code> device type should be used. It is expected that static nodes remain at a fixed position. If these nodes are moved by a significant distance, the algorithm will need to reconfigure the connections, which will result in an instable mesh at the time of moving.</p>
+</div>
+<div class="paragraph">
+<p>Another use-case is that there is a core network of static nodes and some nodes (such as e.g. sensors), that might be moved around. The moving nodes should be configured as <code>LEAF</code> nodes. They will then not relay messages but will be connected to by one of the static nodes. The static nodes serve as the backbone of the network. Care must be taken that the number of leaf nodes is not higher than the number of static nodes in an area as the static nodes have a limit of connections. This could cause a situation in which some leaf nodes are not connected to the network.</p>
+</div>
+<div class="paragraph">
+<p>If there is a high number of moving nodes, these should be configured as <code>ASSET</code> nodes. By default, they will only send data to the mesh using broadcasts, but they are also connectable using <a href="MeshAccessModule.html" class="page">MeshAccess Connections</a>. The asset will broadcast once it has data that it wants to deliver to the mesh. Setting up the MeshAccess Connection needs to be implemented in a MeshGateway as this is something that needs to be centrally scheduled.</p>
+</div>
+<div class="paragraph">
+<p>Last, there is the <code>SINK</code> device type. This is also considered to be a static node and something also referred to as a MeshGateway. A special <a href="Specification.html##NodeIds" class="page">Node Id</a> is assigned to all connected sink nodes and messages to this node id are only received by devices configured as sink nodes.</p>
 </div>
 </div>
 </div>
