@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sensors and Actors :: Fruitymesh</title>
-  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/SensorsAndActors.html">
+  <title>Sensors and Actuators :: Fruitymesh</title>
+  <link rel="canonical" href="http://mwaylabs.github.io/fruitymesh/fruitymesh/SensorsAndActuators.html">
   <meta name="generator" content="Antora 2.1.1">
   <link rel="stylesheet" href="../_/css/site.css">
   <link rel="stylesheet" href="../_/css/footer.css">
@@ -124,7 +124,7 @@
     <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+    <a class="nav-link" href="SensorsAndActuators.html">Sensors and Actuators</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Terminal.html">Terminal</a>
@@ -239,12 +239,12 @@
 </div>
   <main class="main" role="main">
 <article class="doc"><a name="section-top"></a>
-<h1>Sensors and Actors</h1>
+<h1>Sensors and Actuators</h1>
 <div class="sect1">
 <h2 id="_purpose"><a class="anchor" href="#_purpose"></a>Purpose</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As a generic way to send sensor measurements and to send commands to actors, it is possible to use the component_act and component_sense messages. These messages contain a moduleId that is controlled by a vendor. Next, they contain a 2 byte component that can be used to specify a device that is somehow attached to a FruityMesh node. The registerAddress is then used to specify a handle for this value, e.g. a Modbus holding register or a characteristic. The payload is transmitted over the terminal by using base64 or hex-string encoded binary data.</p>
+<p>As a generic way to send sensor measurements and to send commands to actuators, it is possible to use the component_act and component_sense messages. These messages contain a moduleId that is controlled by a vendor. Next, they contain a 2 byte component that can be used to specify a device that is somehow attached to a FruityMesh node. The registerAddress is then used to specify a handle for this value, e.g. a Modbus holding register or a characteristic. The payload is transmitted over the terminal by using base64 or hex-string encoded binary data.</p>
 </div>
 </div>
 </div>
@@ -255,7 +255,7 @@
 <h3 id="_message_types"><a class="anchor" href="#_message_types"></a>Message Types</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">#define MESSAGE_TYPE_COMPONENT_ACT 58 //Actor messages
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">#define MESSAGE_TYPE_COMPONENT_ACT 58 //Actuator messages
 #define MESSAGE_TYPE_COMPONENT_SENSE 59 //Sensor messages</code></pre>
 </div>
 </div>
@@ -370,7 +370,7 @@ component_sense 0 123 0 7 77 AA:BB</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ComponentAct"><a class="anchor" href="#ComponentAct"></a>Actor message</h3>
+<h3 id="ComponentAct"><a class="anchor" href="#ComponentAct"></a>Actuator message</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">// Instruct device to write data into a register address
@@ -380,7 +380,7 @@ component_act [nodeId] [moduleId] [actionType] [component] [registerAddress] [he
 <div class="paragraph">
 <p>The following message is used to transport write or read requests through the mesh.</p>
 </div>
-<div id="actorActionType" class="listingblock">
+<div id="actuatorActionType" class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">enum actionType {
     RESERVED = 0, // Unused
@@ -458,7 +458,7 @@ component_act [nodeId] [moduleId] [actionType] [component] [registerAddress] [he
 </div>
 </article>
 <aside class="article-aside hidden" role="navigation">
-  <h3 class="toc-title">Sensors and Actors</h3>
+  <h3 class="toc-title">Sensors and Actuators</h3>
   <div id="article-toc"></div>
 </aside>
   </main>
@@ -470,7 +470,7 @@ component_act [nodeId] [moduleId] [actionType] [component] [registerAddress] [he
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '..'
-  window.antora.pagePath = '/fruitymesh/SensorsAndActors.html'
+  window.antora.pagePath = '/fruitymesh/SensorsAndActuators.html'
 </script>
 <script src="../_/js/site.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js"></script>

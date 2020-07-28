@@ -124,7 +124,7 @@
     <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+    <a class="nav-link" href="SensorsAndActuators.html">Sensors and Actuators</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Terminal.html">Terminal</a>
@@ -348,6 +348,32 @@ action 0 status livereports 50</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-Javascript hljs" data-lang="Javascript">{"type":"live_report","nodeId":123,"module":3,"code":1,"extra":2,"extra2":3}</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_component_periodic_timestamp_sending"><a class="anchor" href="#_component_periodic_timestamp_sending"></a>Component periodic timestamp sending</h3>
+<div class="paragraph">
+<p>The StatusReporterModule includes functionality for periodically sending the nodes current timestamp. Can be enabled and disabled via component_act. When enabled, it is automatically disabled after a few minutes to avoid unnecessary battery usage.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-C++ hljs" data-lang="C++">//Enables Periodic sending
+component_act [nodeId] 3 2 0xABCD 0x1234 01 [requestHandle]
+
+//Disabled Periodic sending
+component_act [nodeId] 3 2 0xABCD 0x1234 00 [requestHandle]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Upon activation, the component_act message is answered with multiple component_sense messages that roughly look like this example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Javascript hljs" data-lang="Javascript">{"nodeId":33011,"type":"component_sense","module":3,"requestHandle":13,"actionType":2,"component":43981,"register":4660,"payload":"AgAAAA=="}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The payload of the answer is the base 64 timestamp of the target node.</p>
 </div>
 </div>
 </div>

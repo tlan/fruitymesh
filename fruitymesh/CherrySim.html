@@ -124,7 +124,7 @@
     <a class="nav-link" href="ScanController.html">ScanController</a>
       </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="SensorsAndActors.html">Sensors and Actors</a>
+    <a class="nav-link" href="SensorsAndActuators.html">Sensors and Actuators</a>
       </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="Terminal.html">Terminal</a>
@@ -325,6 +325,8 @@
 <div class="sect1">
 <h2 id="Terminal"><a class="anchor" href="#Terminal"></a>Terminal Commands</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_general_2"><a class="anchor" href="#_general_2"></a>General</h3>
 <div class="paragraph">
 <p>The simulator has a terminal that allows to input all commands that can be used with FruityMesh nodes. Depending on the simulator configuration (<code>simConfig.terminalId</code>), either no terminal is enabled (-1), all terminals are active (0) or the terminal of a specific node is active, e.g. 1. Additionally, the simulator adds a few commands for simulation control:</p>
 </div>
@@ -346,7 +348,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim nodes [numNodes] // e.g. "sim nodes 10" to start a simulation with 10 randomly generated nodes</code></pre>
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim nodes [numNodes] [featureSet] // e.g. "sim nodes 10 prod_mesh_nrf52" to start a simulation with 10 randomly placed nodes with the prod_mesh_nrf52 feature set.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -360,13 +362,19 @@
 <div class="paragraph">
 <p>As the simulation is deterministic, you can always restart it either with the same seed to get the same simulation output or choose a different seed.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_positions"><a class="anchor" href="#_positions"></a>Positions</h3>
+<div class="paragraph">
+<p>The following commands change positions of nodes.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim set_position [serial] [x] [y] [z] //e.g. sim set_position BBBBD 0.5 0.21 1.7</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Sets the position (in meters) in the virtual environment of the node with the serial number BBBBD to (0.5 / 0.21 / 1.7). Note: The third axis is the height axis.</p>
+<p>Sets the position (in meters) in the virtual environment of the node with the serial number BBBBD to (0.5 / 0.21 / 1.7). Stops the animation of the given node, if one is playing. Note: The third axis is the height axis.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -382,7 +390,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Adds to the position (in meters) in the virtual environment of the node with the serial number BBBBD. Note: The third axis is the height axis.</p>
+<p>Adds to the position (in meters) in the virtual environment of the node with the serial number BBBBD. Stops the animation of the given node, if one is playing. Note: The third axis is the height axis.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -392,8 +400,170 @@
 <div class="paragraph">
 <p>Same as add_position, but relative to the normalized simulated environment dimensions instead of in meters.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_animations"><a class="anchor" href="#_animations"></a>Animations</h3>
+<div class="paragraph">
+<p>The following commands can be used to play movement animations on nodes so that they move along a specified path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation create [name] //e.g. sim animation create my_animation</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a new, empty animation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation remove [name] //e.g. sim animation remove my_animation</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Removes an animation by name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation exists [name] //e.g. sim animation exists my_animation</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Checks if an animation with name exists. The command is answered with the following JSON:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">{
+    "type":"animation_exists",
+    "name":"name_of_animation",
+    "exists":true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where name is the name of this animation given by the command.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation set_default_type [name] [type] //e.g. sim animation set_default_type my_animation 2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sets the default interpolation type of an animation. If a key point does not specify a type, is has the default type of the animation. The type can be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">	LERP = 0,    //Linear interpolation
+	COSINE = 1,  //Linear interpolation with slow start and end
+	BOOLEAN = 2, //Stays at the start location for 50% of the time, then teleports to the end location and stays there.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation add_keypoint [x] [y] [z] [durationSec] {type} //e.g. sim animation add_keypoint 1 2 3 10 0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Adds a new keypoint to an animation with x/y/z in relative coordinate space. The keypoint is reached after the previous keypoint after durationSec seconds. The type is optional. If none is given, the type set by set_default_type is used.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation set_looped [name] [1/0] //e.g. sim animation set_looped 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Set the animation to be looped or not looped.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation is_running [serial] //e.g. sim animation is_running BBCBC</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Checks if a node has an animation that is currently playing. The command is answered by the following JSON:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">{
+    "type":"animation_is_running",
+    "serial":"BBCBC",
+    "code":1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where code is 1 if it has an animation playing and 0 if it doesn&#8217;t.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation get_name [serial] //e.g. sim animation get_name BBCBC</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Gets the name of the animation that is currently playing on a node. The command is answered by the following JSON:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">{
+    "type":"animation_get_name",
+    "serial":"BBCBC",
+    "name":"my_animation"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where name is the name of the animation that is currently playing or the string "NULL" if none is playing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation start [serial] [name] //e.g. sim animation start BBCBC my_animation</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Starts an animation with the name "name" of the node with the given serial number.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Once an animation has been started on a node, changing the animation with any command has no effect on the animation currently playing on the node. Changes to an animation only have an effect on future animation start commands.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation stop [serial] //e.g. sim animation stop BBCBC</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Stops an animation on the node with the given serial number.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">sim animation load_path [path] //e.g. sim animation load_path /path/to/anim.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Loads animations from a JSON file. See "cherrysim/test/res/MoveAnimation.json" for an example.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The path is always relative to the normalized path, which is the "cherrySim" directory in the repository. This means that played animations must be part of the FruityMesh repository. This is mandatory as else the replay function will not work properly.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Using commands such as <strong>nodes 20</strong>, <strong>width 40</strong>, <strong>height 50</strong> allows to modify the simulation scenario. Scenarios can also be imported as JSON files by first giving the paths (<strong>site site1.json</strong>, <strong>devices dev1.json</strong>) and then enabling JSON import (<strong>json 1</strong>). Each simulation is always run deterministically with a preset seed. This seed can be modified using e.g. <strong>seed 123</strong>, which will result in a new simulation.</p>
+</div>
 </div>
 </div>
 </div>
